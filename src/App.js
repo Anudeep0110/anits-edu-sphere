@@ -17,7 +17,7 @@ import Sforgot from './StudentComponents/Sforgot';
 function App() {
   return (
     <>
-    {/* <AnimCursor/> */}
+    <AnimCursor/>
     <BrowserRouter>
         <Routes>
           <Route path='/' element={<HomeComp />}></Route>
