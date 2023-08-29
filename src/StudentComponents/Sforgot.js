@@ -5,18 +5,17 @@ import {useNavigate} from 'react-router-dom'
 const Fpassword = () => {
 
   const [uname ,setUname] = React.useState('')
-  const [pwd,setPwd] = React.useState('')
   const [err,setErr] = React.useState('')
   const navigate = useNavigate();
 
   const onSubmit = (e) => {
     e.preventDefault();
-    axios.post('http://localhost:8000/login',{uname:uname,pwd:pwd})
+    axios.post('http://localhost:8000/forgotpassword',{uname:uname})
     .then(res => {
       if(res.data.login){
-        navigate('/sdash')
+        navigate('/slogin')
       }else{
-        setErr('*Invalid username or password')
+        setErr('*Invalid username')
       }
     })
   }
@@ -43,10 +42,9 @@ const Fpassword = () => {
                       <div className="form-outline mt-1 pb-1">
                         <input
                           type="text"
-                          id="form2Example22"
                           className=" mt-3 mb-2 login-form-input"
                           placeholder="Username"
-                          onInput={(e) => {setPwd(e.target.value)}}
+                          onInput={(e) => {setUname(e.target.value)}}
                         />
                         
                       </div>
