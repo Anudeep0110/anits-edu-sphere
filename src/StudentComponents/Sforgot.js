@@ -8,15 +8,17 @@ const Fpassword = () => {
   const [err,setErr] = React.useState('')
   const navigate = useNavigate();
 
-  const onSubmit = (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault();
-    axios.post('http://localhost:8000/forgotpassword',{uname:uname})
+    await axios.post('http://localhost:8000/forgotpassword',{uname:uname})
     .then(res => {
-      if(res.data.login){
+      if(res.status === 200){
         navigate('/slogin')
-      }else{
-        setErr('*Invalid username')
       }
+    })
+    .catch(err => {
+      setErr("*Invalid Username")
+      console.log(err);
     })
   }
   return (
