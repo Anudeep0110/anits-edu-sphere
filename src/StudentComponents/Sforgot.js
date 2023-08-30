@@ -1,19 +1,26 @@
 import React from 'react';
 import axios from 'axios'
-import {useNavigate} from 'react-router-dom'
+import Modal from '../Components/Modal'
 
 const Fpassword = () => {
 
   const [uname ,setUname] = React.useState('')
+  const [toggle,setToggle] = React.useState(false)
   const [err,setErr] = React.useState('')
-  const navigate = useNavigate();
+  const [msg,setMsg] = React.useState('')
+
+  const toggleShow = () => {
+    setToggle(!toggle)
+  }
 
   const onSubmit = async (e) => {
     e.preventDefault();
     await axios.post('http://localhost:8000/forgotpassword',{uname:uname})
     .then(res => {
+      console.log(res);
       if(res.status === 200){
-        navigate('/slogin')
+        setMsg('We have sent a password reset link to your respective mailId, Please verify! Thank You!')
+        setToggle(true)
       }
     })
     .catch(err => {
@@ -22,6 +29,7 @@ const Fpassword = () => {
     })
   }
   return (
+    <>
     <section className="gradient-form" style={{ backgroundColor: '#27374D' }}>
       <div className="container py-5 h-100">
         <div className="row d-flex justify-content-center align-items-center h-100">
@@ -68,6 +76,8 @@ const Fpassword = () => {
         </div>
       </div>
     </section>
+    <Modal show = {toggle} msg = {msg} change = {toggleShow}></Modal>
+    </>
   );
 };
 
