@@ -13,6 +13,7 @@ import AnimCursor from './Components/AnimCursor';
 import PLogin from './PrincipalComponents/PLogin'
 import Sdash from './StudentComponents/Sdash';
 import Sforgot from './StudentComponents/Sforgot';
+import Sreset from './StudentComponents/Sreset';
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
           <Route path='/plogin' element={<PLogin />}></Route>
           <Route path='/sdash' element={<Sdash />}></Route>
           <Route path='/sforgot' element={<Sforgot />}></Route>
+          <Route path='/sreset' element={<Sreset />}></Route>
         </Routes> 
       </BrowserRouter>
     </>

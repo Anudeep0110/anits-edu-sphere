@@ -28,3 +28,23 @@
     opacity: .7;
     font-weight: normal;
 }
+
+.login-form-input-1 {
+  width: 100%;
+  outline-width: 0px;
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px solid white;
+  color: white;
+  font-size: 25px;
+  font-weight: 600;
+  padding-inline-start: 20px;
+  font-family: 'QuickSand';
+}
+
+.login-form-input-1::placeholder {
+  color: white;
+  opacity: .8;
+  font-weight: normal;
+}
+
