@@ -40,7 +40,7 @@ const Fpassword = () => {
                     </div>
 
                     <form onSubmit={onSubmit}>
-                      <h4 className="mt-1 mb-4 pb-1 text-center" style={{fontSize:"30px"}}>Password Recovery</h4>
+                      <h4 className="mt-1 mb-4 pb-1 text-center" style={{fontSize:"30px"}}>Reset Password</h4>
                       <div className="form-outline mt-1 pb-1">
                         <input
                           type="text"

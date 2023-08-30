@@ -28,7 +28,7 @@ function App() {
           <Route path='/plogin' element={<PLogin />}></Route>
           <Route path='/sdash' element={<Sdash />}></Route>
           <Route path='/sforgot' element={<Sforgot />}></Route>
-          <Route path='/sreset' element={<Sreset />}></Route>
+          <Route path='/sreset/:uname' element={<Sreset />}></Route> 
         </Routes> 
       </BrowserRouter>
     </>
