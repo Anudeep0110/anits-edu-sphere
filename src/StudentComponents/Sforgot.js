@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios'
 import Modal from '../Components/Modal'
+import { useNavigate } from 'react-router-dom';
 
 const Fpassword = () => {
 
@@ -13,6 +14,7 @@ const Fpassword = () => {
     setToggle(!toggle)
   }
 
+  const Navigate = useNavigate();
   const onSubmit = async (e) => {
     e.preventDefault();
     await axios.post('http://localhost:8000/forgotpassword',{uname:uname})
@@ -21,6 +23,9 @@ const Fpassword = () => {
       if(res.status === 200){
         setMsg('We have sent a password reset link to your respective mailId, Please verify! Thank You!')
         setToggle(true)
+        setTimeout(() => {
+          Navigate('/slogin');
+        },3000)
       }
     })
     .catch(err => {
