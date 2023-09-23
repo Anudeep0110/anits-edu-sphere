@@ -3,7 +3,7 @@
 }
 
 
- .body {
+.body {
   background-color: #27374D;
   min-height: 100vh;
   min-width: 100vw;
@@ -230,7 +230,7 @@ nav ul li{
   .head img {
     margin-top: 100px;
   }
- .head p:first-child{
+  .head p:first-child{
   font-size: 55px;
  }
 
@@ -240,4 +240,4 @@ nav ul li{
  .head p:last-child {
   font-size: 35px;
  }
-}
+} 

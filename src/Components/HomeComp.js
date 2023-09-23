@@ -11,7 +11,7 @@ const HomeComp = () => {
               <p>Welcome to</p>
               <p>Anits EduSphere</p>
               <p>Unlock Your Potential: Navigate your academic voyage effortlessly. Students, faculty,
-                 departments, and principals — seamless access to tailored dashboards for your success.</p>
+                departments, and principals — seamless access to tailored dashboards for your success.</p>
             </div>
         </div>
       </div>
@@ -19,4 +19,4 @@ const HomeComp = () => {
   )
 }
 
-export default HomeComp
+export default HomeComp 
