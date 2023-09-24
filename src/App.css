@@ -31,7 +31,7 @@ nav ul li a {
 }
 nav ul li{
   display: inline-block;
-  margin: 0 25px;
+  margin: 0 40px;
   color: var(--text);
   font-weight: 550;
   font-size: 22px;
@@ -103,7 +103,7 @@ nav ul li{
   align-items: center;
 }
 
-@media screen and (max-width:1200px) {
+@media screen and (max-width:800px) {
   .logo a{
     font-size: 20px;
     margin: 0 50px;
@@ -111,7 +111,7 @@ nav ul li{
 
   nav ul li {
     font-size: 18px;
-    margin: 0 10px;
+    margin: 0 20px;
     line-height: 45px;
   }
   .toggle {
@@ -125,6 +125,7 @@ nav ul li{
     background-color: rgba(255,255,255,.9);
     width: 100%;
     left: -100%;
+    top: 8%;
     transition: all .3s;
   }
   nav ul li {

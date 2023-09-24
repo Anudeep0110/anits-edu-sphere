@@ -28,13 +28,15 @@ export const Login = () => {
 
 return (
     <>
-    <section className="gradient-form h-full bg-neutral-200 dark:bg-neutral-700">
+    {/* 183d67 */}
+    {/* fda206 */} 
+    <section className="gradient-form h-full bg-slate-100 ">
       <div className="container h-full p-10">
-        <div className="g-6 flex h-full flex-wrap items-center justify-center text-neutral-800 dark:text-neutral-200">
+        <div className="g-6 flex h-full flex-wrap items-center justify-center text-neutral-800 ">
           <div className="w-full">
-            <div className="block rounded-lg  bg-white shadow-lg dark:bg-neutral-800">
-              <div className="g-0 lg:flex  lg:flex-wrap">
-                <div className="px-4  md:px-0 lg:w-6/12">
+            <div className="block rounded-lg bg-white shadow-lg ">
+              <div className="g-0 lg:flex lg:flex-wrap">
+                <div className="px-4 border-black border-2  md:px-0 lg:w-6/12">
                   <div className="md:mx-6 flex flex-col items-center md:p-12">
                     <div className="text-center">
                       <h1 className='text-4xl sm:text-6xl font-bold my-12 bg-gradient-to-r from-orange-600 via-red-500 to-pink-700 inline-block text-transparent bg-clip-text'>ANITS</h1>
@@ -48,7 +50,7 @@ return (
                       <div className="relative mb-6" data-te-input-wrapper-init>
                         <input
                           type="text"
-                          className="peer min-h-[auto] w-full bg-transparent px-3 py-[1rem]  border-b-[1px] border-b-black dark:border-b-white leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:placeholder:text-neutral-200 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
+                          className="peer min-h-[auto] w-full bg-transparent px-3 py-[1rem]  border-b-[1px] border-b-black  leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none  [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
                           id="exampleFormControlInput1"
                           placeholder="Username"
                           value={uname}
@@ -66,7 +68,7 @@ return (
                       <div className="relative mb-6" data-te-input-wrapper-init>
                         <input
                           type="password"
-                          className="peer block min-h-[auto] w-full bg-transparent border-b-[1px] border-b-black dark:border-b-white px-3 py-[1rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:placeholder:text-neutral-200 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
+                          className="peer block min-h-[auto] w-full bg-transparent border-b-[1px] border-b-black px-3 py-[1rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
                           id="exampleFormControlInput11"
                           placeholder="Password"
                           value={pwd}
