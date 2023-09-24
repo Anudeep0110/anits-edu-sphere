@@ -3,17 +3,16 @@ import {FiMenu} from 'react-icons/fi'
 const NavbarComp = () => {
   return (
     <>
-        <nav>
-          <label className='logo'><a href='/'>EduSphere</a></label>
+        <nav className='w-full py-6 bg-white dark:bg-gray-900'>
+          <label><a className='text-black text-2xl lg:text-3xl lg:ms-40 font-semibold leading-20 ms-10 dark:text-white' href='/'>EduSphere</a></label>
           <input id='check' type='checkbox' className='check'></input>
-          <label htmlFor="check" className='toggle'><FiMenu /></label>
+          <label htmlFor="check" className='toggle dark:text-white text-black'><FiMenu /></label>
           <ul>
-            <li><a href='/plogin'>Principal</a></li>
-            <li><a href='/dlogin'>Department</a></li>
-            <li><a href='/flogin'>Faculty</a></li>
-            <li><a href='/slogin'>Student</a></li>
+            <li className=''><a href='/login'>Login</a></li>
           </ul>
         </nav>
+      
+
     </>
   )
 }
