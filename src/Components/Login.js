@@ -36,10 +36,10 @@ return (
           <div className="w-full">
             <div className="block rounded-lg bg-white shadow-lg ">
               <div className="g-0 lg:flex lg:flex-wrap">
-                <div className="px-4 border-black border-2  md:px-0 lg:w-6/12">
+                <div className="px-4 md:px-0 lg:w-6/12">
                   <div className="md:mx-6 flex flex-col items-center md:p-12">
                     <div className="text-center">
-                      <h1 className='text-4xl sm:text-6xl font-bold my-12 bg-gradient-to-r from-orange-600 via-red-500 to-pink-700 inline-block text-transparent bg-clip-text'>ANITS</h1>
+                      <h1 className='text-4xl sm:text-6xl font-bold my-12 bg-gradient-to-r from-[#183d67]  to-[#000] inline-block text-transparent bg-clip-text'>ANITS</h1>
                       <h4 className="mb-12 mt-1 pb-1 text-2xl font-semibold">
                         Welcome Back ..!!
                       </h4>
@@ -58,7 +58,7 @@ return (
                         />
                         <label
                           htmlFor="exampleFormControlInput1"
-                          className={`pointer-events-none absolute  left-3 top-0 mb-0  max-w-[90%] origin-[0_0] truncate pt-[2] leading-[3.5] text-neutral-300 transition-all duration-200 ease-out ${
+                          className={`pointer-events-none absolute  left-3 top-0 mb-0  max-w-[90%] origin-[0_0] truncate pt-[2] leading-[3.5] text-[#183d67] transition-all duration-200 ease-out ${
                             isLabelHidden ? 'hidden' : ''
                           }`}>
                           Username
@@ -76,7 +76,7 @@ return (
                         />
                         <label
                           htmlFor="exampleFormControlInput11"
-                          className={`pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[2] leading-[3.5] text-neutral-300 transition-all duration-200 ease-out ${
+                          className={`pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[2] leading-[3.5] text-[#183d67] transition-all duration-200 ease-out ${
                             isLabelHid ? 'hidden' : ''
                           }`}
                         > 
@@ -92,7 +92,7 @@ return (
                           data-te-ripple-init
                           data-te-ripple-color="light"
                           style={{
-                            background: 'linear-gradient(to right, #ee7724, #d8363a, #dd3675, #b44593)',
+                            background: 'linear-gradient(to right, #183d67, #000)',
                           }}
                           onClick={Submit}
                         >
@@ -108,7 +108,7 @@ return (
                 <div
                   className="flex items-center rounded-b-lg lg:w-6/12 lg:rounded-r-lg lg:rounded-bl-none"
                   style={{
-                    background: 'linear-gradient(to right, #ee7724, #d8363a, #dd3675, #b44593)',
+                    background: 'linear-gradient(to right, #183d67, #000)',
                   }}
                 >
                   <div className="px-4 py-6 text-white md:mx-6 md:p-12">
