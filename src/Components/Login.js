@@ -1,6 +1,31 @@
 import React from 'react'
-
+import axios from 'axios'
+import { useNavigate } from 'react-router-dom'
 export const Login = () => {
+  const Navigate = useNavigate();
+
+  const [uname,setUname] = React.useState('');
+  const [pwd,setPwd] = React.useState('');
+  const [err,setErr] = React.useState('');
+
+  const isLabelHidden = uname.trim() !== '';
+  const isLabelHid = pwd.trim() !== '';
+
+  const Submit = (e) => {
+    e.preventDefault();
+    axios.post('http://localhost:8000/login',{uname:uname,pwd:pwd})
+    .then((res) => {
+      if(res.data.login){
+        Navigate('/sdash',{state:{role:res.data.role}});
+      }else{
+        setErr("*Invalid username or password")
+      }
+    })
+    .catch((err) => {
+      setErr("Check your Internet Connection and try again..!!")
+    })
+  }
+
 return (
     <>
     <section className="gradient-form h-full bg-neutral-200 dark:bg-neutral-700">
@@ -19,42 +44,45 @@ return (
                     </div>
 
                     <form className='w-3/4 flex flex-col'>
-                      <div
-                        className="relative mb-6"
-                        data-te-input-wrapper-init
-                      >
+
+                      <div className="relative mb-6" data-te-input-wrapper-init>
                         <input
                           type="text"
-                          className="peer min-h-[auto] w-full bg-transparent px-3 py-[1rem] border-b-[1px] border-b-black dark:border-b-white leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:placeholder:text-neutral-200 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
+                          className="peer min-h-[auto] w-full bg-transparent px-3 py-[1rem]  border-b-[1px] border-b-black dark:border-b-white leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:placeholder:text-neutral-200 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
                           id="exampleFormControlInput1"
                           placeholder="Username"
+                          value={uname}
+                          onChange={(e) => setUname(e.target.value)}
                         />
                         <label
                           htmlFor="exampleFormControlInput1"
-                          className="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.5rem] leading-[1.6] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[0.9rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-200 dark:peer-focus:text-primary"
-                        >
+                          className={`pointer-events-none absolute  left-3 top-0 mb-0  max-w-[90%] origin-[0_0] truncate pt-[2] leading-[3.5] text-neutral-300 transition-all duration-200 ease-out ${
+                            isLabelHidden ? 'hidden' : ''
+                          }`}>
                           Username
                         </label>
                       </div>
 
-                      <div
-                        className="relative mb-6"
-                        data-te-input-wrapper-init
-                      >
+                      <div className="relative mb-6" data-te-input-wrapper-init>
                         <input
                           type="password"
                           className="peer block min-h-[auto] w-full bg-transparent border-b-[1px] border-b-black dark:border-b-white px-3 py-[1rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:placeholder:text-neutral-200 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
                           id="exampleFormControlInput11"
                           placeholder="Password"
+                          value={pwd}
+                          onChange={(e) => setPwd(e.target.value)}
                         />
                         <label
                           htmlFor="exampleFormControlInput11"
-                          className="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.5rem] leading-[1.6] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[0.9rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-200 dark:peer-focus:text-primary"
-                        >
+                          className={`pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[2] leading-[3.5] text-neutral-300 transition-all duration-200 ease-out ${
+                            isLabelHid ? 'hidden' : ''
+                          }`}
+                        > 
                           Password
                         </label>
                       </div>
 
+                      <span className='text-red-500 mt-5'>{err}</span>
                       <div className="mb-12 pb-1 pt-4 text-center">
                         <button
                           className="mb-3 inline-block w-full rounded px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_rgba(0,0,0,0.2)] transition duration-150 ease-in-out hover:shadow-[0_8px_9px_-4px_rgba(0,0,0,0.1),0_4px_18px_0_rgba(0,0,0,0.2)] focus:shadow-[0_8px_9px_-4px_rgba(0,0,0,0.1),0_4px_18px_0_rgba(0,0,0,0.2)] focus:outline-none focus:ring-0 active:shadow-[0_8px_9px_-4px_rgba(0,0,0,0.1),0_4px_18px_0_rgba(0,0,0,0.2)]"
@@ -64,6 +92,7 @@ return (
                           style={{
                             background: 'linear-gradient(to right, #ee7724, #d8363a, #dd3675, #b44593)',
                           }}
+                          onClick={Submit}
                         >
                           Log in
                         </button>
