@@ -7,30 +7,25 @@ return (
       <div className="container h-full p-10">
         <div className="g-6 flex h-full flex-wrap items-center justify-center text-neutral-800 dark:text-neutral-200">
           <div className="w-full">
-            <div className="block rounded-lg bg-white shadow-lg dark:bg-neutral-800">
-              <div className="g-0 lg:flex lg:flex-wrap">
-                <div className="px-4 md:px-0 lg:w-6/12">
-                  <div className="md:mx-6 md:p-12">
+            <div className="block rounded-lg  bg-white shadow-lg dark:bg-neutral-800">
+              <div className="g-0 lg:flex  lg:flex-wrap">
+                <div className="px-4  md:px-0 lg:w-6/12">
+                  <div className="md:mx-6 flex flex-col items-center md:p-12">
                     <div className="text-center">
-                      <img
-                        className="mx-auto w-48"
-                        src="https://tecdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/lotus.webp"
-                        alt="logo"
-                      />
-                      <h4 className="mb-12 mt-1 pb-1 text-xl font-semibold">
+                      <h1 className='text-4xl sm:text-6xl font-bold my-12 bg-gradient-to-r from-orange-600 via-red-500 to-pink-700 inline-block text-transparent bg-clip-text'>ANITS</h1>
+                      <h4 className="mb-12 mt-1 pb-1 text-2xl font-semibold">
                         Welcome Back ..!!
                       </h4>
                     </div>
 
-                    <form className='border w-3/4 flex flex-col '>
-                      {/* <p className="mb-4 text-center font-bold">Please login to your account</p> */}
+                    <form className='w-3/4 flex flex-col'>
                       <div
-                        className="relative mb-4"
+                        className="relative mb-6"
                         data-te-input-wrapper-init
                       >
                         <input
                           type="text"
-                          className="peer block min-h-[auto] w-full rounded border bg-transparent px-3 py-[1rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:placeholder:text-neutral-200 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
+                          className="peer min-h-[auto] w-full bg-transparent px-3 py-[1rem] border-b-[1px] border-b-black dark:border-b-white leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:placeholder:text-neutral-200 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
                           id="exampleFormControlInput1"
                           placeholder="Username"
                         />
@@ -43,12 +38,12 @@ return (
                       </div>
 
                       <div
-                        className="relative mb-4"
+                        className="relative mb-6"
                         data-te-input-wrapper-init
                       >
                         <input
                           type="password"
-                          className="peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[1rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:placeholder:text-neutral-200 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
+                          className="peer block min-h-[auto] w-full bg-transparent border-b-[1px] border-b-black dark:border-b-white px-3 py-[1rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:placeholder:text-neutral-200 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
                           id="exampleFormControlInput11"
                           placeholder="Password"
                         />
@@ -75,18 +70,6 @@ return (
 
                         <a href="#!">Forgot password?</a>
                       </div>
-
-                      {/* <div className="flex items-center justify-between pb-6">
-                        <p className="mb-0 mr-2">Don't have an account?</p>
-                        <button
-                          type="button"
-                          className="inline-block rounded border-2 border-danger px-6 pb-[6px] pt-2 text-xs font-medium uppercase leading-normal text-danger transition duration-150 ease-in-out hover:border-danger-600 hover:bg-neutral-500 hover:bg-opacity-10 hover:text-danger-600 focus:border-danger-600 focus:text-danger-600 focus:outline-none focus:ring-0 active:border-danger-700 active:text-danger-700 dark:hover:bg-neutral-100 dark:hover:bg-opacity-10"
-                          data-te-ripple-init
-                          data-te-ripple-color="light"
-                        >
-                          Register
-                        </button>
-                      </div> */}
                     </form>
                   </div>
                 </div>
@@ -98,14 +81,22 @@ return (
                   }}
                 >
                   <div className="px-4 py-6 text-white md:mx-6 md:p-12">
-                    <h4 className="mb-6 text-xl font-semibold">
-                      We are more than just a company
+                    <h4 className="mb-6 text-2xl font-semibold">
+                    Transforming the college experience
                     </h4>
-                    <p className="text-sm">
-                      Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-                      sed do eiusmod tempor incididunt ut labore et dolore magna
-                      aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                      ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                    <p className="text-md text-justify">
+                    It ensures user authentication, safeguarding sensitive data and privacy.
+                     Once logged in, users benefit from a personalized experience, 
+                     enabling them to view their own progress, update information, 
+                     and tailor settings to their liking. This system fosters accountability,
+                      as users are more inclined to actively engage with and maintain their records.
+                       It also allows for facilitates data tracking and analytics,
+                        and grants access control based on roles, ensuring that students, faculty, and 
+                        staff only see relevant information. Moreover, it bolsters security
+                         through encryption and multi-factor authentication, 
+                         collects user feedback, and ensures legal compliance. 
+                         Overall, a login system enhances user engagement, data protection,
+                          and the overall functionality of the college dashboard.
                     </p>
                   </div>
                 </div>
