@@ -99,7 +99,7 @@ return (
                           Log in
                         </button>
 
-                        <a href="#!">Forgot password?</a>
+                        <a href="/sforgot">Forgot password?</a>
                       </div>
                     </form>
                   </div>
