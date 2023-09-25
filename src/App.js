@@ -10,6 +10,9 @@ import Sdash from './StudentComponents/Sdash';
 import Sforgot from './StudentComponents/Sforgot';
 import Sreset from './StudentComponents/Sreset';
 import { Login } from './Components/Login';
+import Fdash from './FacultyComponents/Fdash';
+import Pdash from './PrincipalComponents/Pdash';
+import Ddash from './DepartmentComponents/Ddash';
 
 
 
@@ -22,6 +25,9 @@ function App() {
           <Route path='/' element={<HomeComp />}></Route>
           <Route path='/slogin' element={<SLogin />}></Route>
           <Route path='/sdash' element={<Sdash />}></Route>
+          <Route path='/fdash' element={<Fdash />}></Route>
+          <Route path='/pdash' element={<Pdash />}></Route>
+          <Route path='/ddash' element={<Ddash />}></Route>
           <Route path='/sforgot' element={<Sforgot />}></Route>
           <Route path='/sreset/:uname' element={<Sreset />}></Route> 
           <Route path='/login' element={<Login />}></Route> 

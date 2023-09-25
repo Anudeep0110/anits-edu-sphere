@@ -4,7 +4,7 @@ const NavbarComp = () => {
   return (
     <>
         <nav className='w-full py-6 bg-slate-100'>
-          <label><a className='text-black text-2xl lg:text-3xl lg:ms-40 font-semibold leading-20 ms-10 ' href='/'>EduSphere</a></label>
+          <label><a className='text-black text-2xl no-underline lg:text-3xl lg:ms-40 font-bold leading-20 ms-10 ' href='/'>EduSphere</a></label>
           <input id='check' type='checkbox' className='check'></input>
           <label htmlFor="check" className='toggle text-black'><FiMenu /></label>
           <ul>
