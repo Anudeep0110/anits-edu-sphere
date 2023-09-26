@@ -27,7 +27,7 @@ function App() {
           <Route path='/pdash' element={<Pdash />}></Route>
           <Route path='/ddash' element={<Ddash />}></Route>
           <Route path='/sforgot' element={<Sforgot />}></Route>
-          <Route path='/sreset/:uname' element={<Sreset />}></Route> 
+          <Route path='/sreset/:encryptedText' element={<Sreset />}></Route> 
           <Route path='/login' element={<Login />}></Route> 
         </Routes> 
       </BrowserRouter>

@@ -3,7 +3,6 @@ import axios from 'axios'
 import Modal from '../Components/Modal'
 import { useNavigate } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css'
-import CryptoJS from 'crypto-js';
 
 
 const Fpassword = () => {
@@ -17,24 +16,28 @@ const Fpassword = () => {
     setToggle(!toggle)
   }
 
+  function encodeData(data) {
+    return btoa(JSON.stringify(data));
+  }
+
   const Navigate = useNavigate();
   const onSubmit = async (e) => {
     e.preventDefault();
-    const encrypteduname =  CryptoJS.AES.encrypt(JSON.stringify(uname),`${process.env.key}`).toString()
-    console.log("encrypted "+encrypteduname)
-    await axios.post('http://localhost:8000/forgotpassword',{uname:uname,euname:encrypteduname})
+    await axios.post('http://localhost:8000/forgotpassword',{uname:uname,euname:encodeData(uname)})
     .then(res => {
       console.log(res);
-      if(res.status === 200){
+      if(res.status === 200 && res.data === true){
         setMsg('Utilize the password reset link sent to your email to effortlessly reset your password. Thank You!')
         setToggle(true)
         setTimeout(() => {
           Navigate('/login');
         },3000)
+      }else if(res.status === 200 && res.data === false){
+        setErr("*Invalid Username")
       }
     })
     .catch(err => {
-      setErr("*Invalid Username")
+      setErr("*Internal server error! Please Try Again Later");
       console.log(err);
     })
   }
