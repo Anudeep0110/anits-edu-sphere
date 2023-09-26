@@ -2,10 +2,35 @@ import React from 'react'
 import { useNavigate,useParams } from 'react-router-dom';
 import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css'
+import CryptoJS from 'crypto-js';
+import Modal from '../Components/Modal'
+import Loader from '../Components/Loader'
 const Sreset = () => {
 
+    const [uname, setUname] = React.useState('');
     const Navigate = useNavigate();
-    const { uname } = useParams();
+    const [toggle,setToggle] = React.useState(false)
+    const [load,setLoad] = React.useState(false)
+    const toggleShow = () => {
+        setToggle(!toggle)
+    }
+
+    const { encryptedText } = useParams();
+    React.useEffect(() => {
+        try {
+            const decryptedData = CryptoJS.AES.decrypt(encryptedText, `${process.env.key}`);
+            const decryptedText = decryptedData.toString(CryptoJS.enc.Utf8);
+            setUname(decryptedText);
+            setLoad(true)
+        } catch (error) {
+            console.error('Decryption error:', error);
+            toggleShow();
+            setTimeout(() => {
+                Navigate('/sforgot')
+            },3000)
+        } 
+    },[])
+    
     const [pass,setPass] = React.useState("");
     const [cfpass,setCfpass] = React.useState("");
     const [msg,setMsg] = React.useState("");
@@ -20,8 +45,8 @@ const Sreset = () => {
         setPass(e.target.value);
         if(pass.length > 7 && pass.length < 12 && containsNumber(pass)) {
             setPcol("green");
-        }
-        else{
+        } 
+        else{ 
             setPcol("red");
         }
     }
@@ -31,7 +56,7 @@ const Sreset = () => {
             axios.post('http://localhost:8000/resetpassword',{uname:uname,pass:pass})
             .then(res => {
                 if(res.status === 200)  
-                    Navigate('/slogin');
+                    Navigate('/login');
             })
             .catch(err => {
                 setMsg("*Please try again Later");
@@ -46,7 +71,7 @@ const Sreset = () => {
 
 return (
     <>
-    <div className='d-flex justify-content-center align-items-center bg-slate-100 ' style={{ height:'100vh' }}>
+    {load?<div className='d-flex justify-content-center align-items-center bg-slate-100 ' style={{ height:'100vh' }}>
         <div className='d-flex flex-column p-5 gap-4 rounded-md bg-white shadow-[0_0_10px_1px_rgba(0,0,0,.3)]'>
             <p className='h3 text-center bg-gradient-to-r from-[#183d67] to-[#000] bg-clip-text'>Reset Password</p> 
             <ul style={{ listStyle:'circle' }}>
@@ -58,7 +83,8 @@ return (
             <span className='text-danger'>{msg}</span>
             <button className='btn text-white bg-gradient-to-r from-[#183d67] to-[#000]' onClick={ Submit }>Submit</button>
         </div>
-    </div>
+    </div>:<Loader/>}
+    <Modal show = {toggle} title = {'Network Error..!!'}  msg = {'Please Try Again Later..'} change = {toggleShow}></Modal>
     </>
 )} 
 

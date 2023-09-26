@@ -4,7 +4,6 @@ import './StudentComponents/sapp.css'
 import './DepartmentComponents/dapp.css'
 import {BrowserRouter,Routes,Route} from 'react-router-dom'
 import HomeComp from './Components/HomeComp';
-import SLogin from './StudentComponents/Slogin';
 import AnimCursor from './Components/AnimCursor';
 import Sdash from './StudentComponents/Sdash';
 import Sforgot from './StudentComponents/Sforgot';
@@ -23,7 +22,6 @@ function App() {
     <BrowserRouter>
         <Routes>
           <Route path='/' element={<HomeComp />}></Route>
-          <Route path='/slogin' element={<SLogin />}></Route>
           <Route path='/sdash' element={<Sdash />}></Route>
           <Route path='/fdash' element={<Fdash />}></Route>
           <Route path='/pdash' element={<Pdash />}></Route>

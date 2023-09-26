@@ -3,6 +3,9 @@ import axios from 'axios'
 import Modal from '../Components/Modal'
 import { useNavigate } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css'
+import CryptoJS from 'crypto-js';
+
+
 const Fpassword = () => {
 
   const [uname ,setUname] = React.useState('')
@@ -17,14 +20,16 @@ const Fpassword = () => {
   const Navigate = useNavigate();
   const onSubmit = async (e) => {
     e.preventDefault();
-    await axios.post('http://localhost:8000/forgotpassword',{uname:uname})
+    const encrypteduname =  CryptoJS.AES.encrypt(JSON.stringify(uname),`${process.env.key}`).toString()
+    console.log("encrypted "+encrypteduname)
+    await axios.post('http://localhost:8000/forgotpassword',{uname:uname,euname:encrypteduname})
     .then(res => {
       console.log(res);
       if(res.status === 200){
-        setMsg('We have sent a password reset link to your respective mailId, Please verify! Thank You!')
+        setMsg('Utilize the password reset link sent to your email to effortlessly reset your password. Thank You!')
         setToggle(true)
         setTimeout(() => {
-          Navigate('/slogin');
+          Navigate('/login');
         },3000)
       }
     })
@@ -87,7 +92,7 @@ const Fpassword = () => {
         </div>
       </div>
     </section>
-    <Modal show = {toggle} msg = {msg} change = {toggleShow}></Modal>
+    <Modal show = {toggle} msg = {msg} title = {'Inspect Your Email'} change = {toggleShow}></Modal>
     </>
   );
 };

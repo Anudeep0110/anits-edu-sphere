@@ -26,11 +26,11 @@ export default function App(props) {
         <MDBModalDialog centered>
           <MDBModalContent>
             <MDBModalHeader>
-              <MDBModalTitle>Modal title</MDBModalTitle>
+              <MDBModalTitle className='font-bold text-center w-full text-green-600'>{props.title}</MDBModalTitle>
               <MDBBtn className='btn-close' color='none' onClick={toggleShow}></MDBBtn>
             </MDBModalHeader>
             <MDBModalBody>
-              <p>
+              <p className='font-semibold text-center text-lg' >
                 {props.msg}
               </p>
             </MDBModalBody>
@@ -39,4 +39,4 @@ export default function App(props) {
       </MDBModal>
     </>
   );
-}
+} 
