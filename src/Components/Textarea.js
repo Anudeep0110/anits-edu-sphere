@@ -1,7 +1,6 @@
 import React from 'react';
 
-const Textarea = (props) => {
-  const { label, placeholder } = props;
+const Textarea = ({ label, placeholder }) => {
 
   return (
     <>

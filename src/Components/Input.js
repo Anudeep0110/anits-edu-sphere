@@ -9,4 +9,4 @@ const Input = ({label,placeholder,type,isDisable}) => {
   )
 }
 
-export default Input
+export default Input 
