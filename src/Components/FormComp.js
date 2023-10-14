@@ -1,4 +1,5 @@
 import React from 'react'
+import Input from './Input'
 
 const FormComp = () => {
 return (
@@ -8,26 +9,11 @@ return (
         <div className='flex flex-col gap-5 py-10 items-center w-full h-screen lg:w-1/2 '>
             <h1 className='text-xl text-center md:text-2xl lg:text-3xl text-black font-bold '>Awards / Special Achievements / Records</h1>
             <form className='w-full flex gap-5 flex-col items-center'>
-                <div className='w-[70%] flex flex-col gap-3'>
-                    <label className='ps-1 text-md font-semibold text-black block'>Name of the Faculty</label>
-                    <input type='text' placeholder='Alice' disabled='true' className='w-full text-md border h-10 px-2 border-black rounded-md '></input>
-                </div>
-                <div className='w-[70%] flex flex-col gap-3'>
-                    <label className='text-md font-semibold text-black block'>Department</label>
-                    <input type='text' placeholder='CSM' disabled='true' className='w-full text-md border h-10 px-2 border-black rounded-md '></input>
-                </div> 
-                <div className='w-[70%] flex flex-col gap-3'>
-                    <label className='text-md font-semibold text-black block'>Name of the Award / Recognition</label>
-                    <input type='text' placeholder='' className='w-full text-md border h-10 px-2 border-black rounded-md '></input>
-                </div> 
-                <div className='w-[70%] flex flex-col gap-3'>
-                    <label className='text-md font-semibold text-black block'>Name of the Awarding government/government recognised body </label>
-                    <input type='text' placeholder='' className='w-full text-md border h-10 px-2 border-black rounded-md '></input>
-                </div>
-                <div className='w-[70%] flex flex-col gap-3'>
-                    <label className='text-md font-semibold text-black block'>Date of Achievement</label>
-                    <input type='date' placeholder='' className='w-full text-md border h-10 px-2 border-black rounded-md '></input>
-                </div>
+                <Input label='Name of the Faculty' placeholder={'Alice'} type={'text'} isDisable={true}/>
+                <Input label='Department' placeholder={'CSM'} type={'text'} isDisable={true}/>
+                <Input label='Name of the Award / Recognition' placeholder={''} isDisable={false} type={'text'}/>
+                <Input label='Name of the Awarding government/government recognised body' isDisable={false} placeholder={''} type={'text'}/>
+                <Input label='Date of Achievement' placeholder={''} isDisable={false} type={'date'}/>
                 <div className='w-[70%] flex flex-col mt-4 gap-3'>
                     <button type='submit' className='bg-slate-900 h-10 text-white rounded-md'>Submit</button>
                 </div>
