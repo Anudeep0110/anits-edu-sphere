@@ -1,5 +1,6 @@
 import React from 'react'
 import Input from './Input'
+import Formdescript from './Formdescript'
 
 const FormComp = () => {
 return (
@@ -18,36 +19,24 @@ return (
                     <button type='submit' className='bg-slate-900 h-10 text-white rounded-md'>Submit</button>
                 </div>
             </form> 
-        </div>
-        <div className='fixed right-0 bottom-0 h-full flex justify-center flex-col items-center lg:px-12 md:px-0
-            overflow-y-hidden w-0 lg:w-1/2 text-white font-semibold
-            rounded-b-lg lg:rounded-r-lg lg:rounded-bl-none' 
-            style={{ 
-                background: 'linear-gradient(to right, #183d67, #000)',
-            }}>
-            {/* <img src={'/assets/flogin.jpg'} className='h-screen' alt='Flogin'></img> */}
-            <h4 className="mb-6 text-3xl font-bold">
-            Transforming the college experience
-            </h4>
-            <p className="text-md text-justify">
-                It ensures user authentication, safeguarding sensitive data and privacy.
-                Once logged in, users benefit from a personalized experience, 
-                enabling them to view their own progress, update information, 
-                and tailor settings to their liking. This system fosters accountability,
-                as users are more inclined to actively engage with and maintain their records.
-                It also allows for facilitates data tracking and analytics,
-                and grants access control based on roles, ensuring that students, faculty, and 
-                staff only see relevant information. Moreover, it bolsters security
-                through encryption and multi-factor authentication, 
-                collects user feedback, and ensures legal compliance. 
-                Overall, a login system enhances user engagement, data protection,
-                and the overall functionality of the college dashboard.
-            </p>
-        </div>
-    </div>
+        </div> 
+        <Formdescript describe='It ensures user authentication, safeguarding sensitive data and privacy.
+            Once logged in, users benefit from a personalized experience, 
+            enabling them to view their own progress, update information, 
+            and tailor settings to their liking. This system fosters accountability,
+            as users are more inclined to actively engage with and maintain their records.
+            It also allows for facilitates data tracking and analytics,
+            and grants access control based on roles, ensuring that students, faculty, and 
+            staff only see relevant information. Moreover, it bolsters security
+            through encryption and multi-factor authentication, 
+            collects user feedback, and ensures legal compliance. 
+            Overall, a login system enhances user engagement, data protection,
+            and the overall functionality of the college dashboard.' title='Transforming the college experience'>
+        </Formdescript>
+    </div> 
 </div>
 </>
 )
 }
 
-export default FormComp
+export default FormComp 
