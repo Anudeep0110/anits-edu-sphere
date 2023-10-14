@@ -12,8 +12,7 @@ import { Login } from './Components/Login';
 import Fdash from './FacultyComponents/Fdash';
 import Pdash from './PrincipalComponents/Pdash';
 import Ddash from './DepartmentComponents/Ddash';
-
-
+import FormComp from './Components/FormComp';
 
 function App() {
   return (
@@ -29,6 +28,7 @@ function App() {
           <Route path='/sforgot' element={<Sforgot />}></Route>
           <Route path='/sreset/:encryptedText' element={<Sreset />}></Route> 
           <Route path='/login' element={<Login />}></Route> 
+          <Route path='/form' element={<FormComp />}></Route> 
         </Routes> 
       </BrowserRouter>
     </>
