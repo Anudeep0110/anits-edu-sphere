@@ -38,7 +38,6 @@ export default AdventureSection;
 
 
 
-
 // import React from 'react'
 // import NavbarComp from './NavbarComp'
 // const HomeComp = () => {

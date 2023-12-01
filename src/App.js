@@ -13,6 +13,8 @@ import Fdash from './FacultyComponents/Fdash';
 import Pdash from './PrincipalComponents/Pdash';
 import Ddash from './DepartmentComponents/Ddash';
 import FormComp from './Components/FormComp';
+import Formbook from './FacultyComponents/Formbook';
+
 
 function App() {
   return (
@@ -29,6 +31,8 @@ function App() {
           <Route path='/sreset/:encryptedText' element={<Sreset />}></Route> 
           <Route path='/login' element={<Login />}></Route> 
           <Route path='/form' element={<FormComp />}></Route> 
+          <Route path='/fpublications' element={<Formbook />}></Route> 
+
         </Routes> 
       </BrowserRouter>
     </>
