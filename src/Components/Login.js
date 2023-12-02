@@ -16,15 +16,7 @@ export const Login = () => {
     axios.post('http://localhost:8000/login',{uname:uname,pwd:pwd})
     .then((res) => {
       if(res.data.login){
-        if(res.data.role==='student'){
-          Navigate('/sdash');
-        }else if(res.data.role==='department'){
-          Navigate('/ddash')
-        }else if(res.data.role==='faculty'){
-          Navigate('fdash')
-        }else if(res.data.role==='principal'){
-          Navigate('/pdash')
-        }
+        Navigate('/dashboard',{state:{role:res.data.role,fname:res.data.fname}})
       }else{
         setErr("*Invalid username or password")
       }
@@ -36,7 +28,7 @@ export const Login = () => {
 
 return (
     <>
-    <section className="gradient-form h-full bg-slate-100 ">
+    <section className="gradient-form h-full lg:h-screen bg-slate-100 ">
       <div className="container h-full p-10">
         <div className="g-6 flex h-full flex-wrap items-center justify-center text-neutral-800 ">
           <div className="w-full">

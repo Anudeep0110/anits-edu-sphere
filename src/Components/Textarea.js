@@ -9,7 +9,8 @@ const Textarea = ({ label, placeholder }) => {
         <textarea
           type='text'
           placeholder={placeholder}
-          className='w-full text-md border h-10 px-2 border-black rounded-md '
+          rows={5}
+          className='w-full text-md border px-2 border-black rounded-md '
         ></textarea>
       </div>
     </>
