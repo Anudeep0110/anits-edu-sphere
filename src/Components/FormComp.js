@@ -32,13 +32,12 @@ return (
             <form className='w-full flex gap-5 pb-16 flex-col items-center'>
                 {/* <Input label='Name of the Faculty' placeholder={'Alice'} type={'text'} isDisable={true}/> */}
                 {form.columns.map((column,index) => {
-                    if(column.type === 'text'){
+                    if(column.type === 'textarea'){
                     return(
-                            <Input key={index} label={column.name} placeholder={column.name} type={column.type} isDisable={false}/>
+                        <Textarea key={index} label={column.colname} placeholder={column.placeholder} type={column.type} isDisable={false}/>
                         )}else{
-                        
-                    return (
-                        <Textarea key={index} label={column.name} placeholder={column.name} type={column.type} isDisable={false}/>
+                            return (
+                        <Input key={index} label={column.colname} placeholder={column.placeholder} type={column.type} isDisable={false}/>
                     )
                     }
                 })}
@@ -46,7 +45,7 @@ return (
                     <button type='submit' className='bg-slate-900 h-10 text-white rounded-md'>Submit</button>
                 </div>
             </form> 
-        </div> 
+        </div>
         <Formdescript describe='It ensures user authentication, safeguarding sensitive data and privacy.
             Once logged in, users benefit from a personalized experience, 
             enabling them to view their own progress, update information, 
