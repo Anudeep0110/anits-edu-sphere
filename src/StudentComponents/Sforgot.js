@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios'
 import Modal from '../Components/Modal'
+import './sapp.css'
 import { useNavigate } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css'
 
@@ -43,7 +44,7 @@ const Fpassword = () => {
   }
   return (
     <>
-    <section className="gradient-form bg-slate-100">
+    <section className="gradient-form h-screen bg-slate-100">
       <div className="container py-5 h-100">
         <div className="row  d-flex justify-content-center align-items-center h-100">
           <div className="col-xl-10">
