@@ -15,13 +15,10 @@ const FormComp = () => {
     const [formdata,setFormdata] = React.useState({})
     const [status,setStatus] = React.useState(false)
 
-
     const handleChange = (e) => {
         e.preventDefault();
         setFormdata({...formdata,[e.target.name]:e.target.value})
     }
-
-
     React.useEffect(() => {
         axios.post('http://localhost:8000/getform',{id:location.state.id})
         .then(res => {
@@ -35,7 +32,7 @@ const FormComp = () => {
         await axios.post('http://localhost:8000/sendtodb',{data:formdata,formid:location.state.id})
         .then(res => {
             console.log(res.data);
-            setStatus(true);
+            setStatus(true);    
             toast.success('Data Saved successfully!',{
                 position: "top-right",
                 autoClose: 3000,

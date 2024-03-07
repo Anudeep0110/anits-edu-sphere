@@ -8,6 +8,9 @@ import { Login } from './Components/Login';
 import FormComp from './Components/FormComp';
 import Dashboard from './Components/Dashboard';
 import Formbook from './FacultyComponents/Formbook';
+import Principal from './Components/Principal';
+import PrinDepartment from './Components/PrinDepartment';
+import PrinDeptDashboard from './Components/PrinDeptDashboard';
 
 
 function App() {
@@ -22,7 +25,10 @@ function App() {
           <Route path='/sreset/:encryptedText' element={<Sreset />}></Route> 
           <Route path='/login' element={<Login />}></Route> 
           <Route path='/form' element={<FormComp />}></Route> 
-          <Route path='/fpublications' element={<Formbook />}></Route> 
+          <Route path='/fpublications' element={<Formbook />}></Route>
+          <Route path='/principal' element={<Principal />}></Route>
+          <Route path='/principal/departments' element={<PrinDepartment />}></Route>
+          <Route path='/principal/departments/:dept' element={<PrinDeptDashboard />}></Route>
 
         </Routes> 
       </BrowserRouter>
