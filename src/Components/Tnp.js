@@ -1,7 +1,7 @@
 import React from 'react'
 import NavbarComp from './NavbarComp'
 import { FcDepartment } from "react-icons/fc";
-import { useLocation, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 
 
