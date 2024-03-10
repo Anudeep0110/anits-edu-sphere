@@ -11,6 +11,7 @@ import Formbook from './FacultyComponents/Formbook';
 import Principal from './Components/Principal';
 import PrinDepartment from './Components/PrinDepartment';
 import PrinDeptDashboard from './Components/PrinDeptDashboard';
+import Tnp from './Components/Tnp';
 
 
 function App() {
@@ -29,7 +30,7 @@ function App() {
           <Route path='/principal' element={<Principal />}></Route>
           <Route path='/principal/departments' element={<PrinDepartment />}></Route>
           <Route path='/principal/departments/:dept' element={<PrinDeptDashboard />}></Route>
-
+          <Route path='/tnp' element={<Tnp />}></Route>
         </Routes> 
       </BrowserRouter>
     </>
