@@ -7,7 +7,7 @@ import { CgProfile } from "react-icons/cg";
 import { BsDatabaseCheck } from "react-icons/bs";
 
 
-const StudentDashboard = () => {
+const FacultyDashboard = () => {
 
     const {id} = useParams()
 
@@ -40,7 +40,10 @@ const StudentDashboard = () => {
                     <MenuItem icon = {<CgProfile />}>Profile</MenuItem>
                     <MenuItem icon = {<BsDatabaseCheck />}>Forms</MenuItem>
                     <MenuItem>Publications</MenuItem>
-                    <MenuItem>Attendance</MenuItem>
+                    <MenuItem>Qualification</MenuItem>
+                    <MenuItem>Experience</MenuItem>
+                    <MenuItem>Time Table</MenuItem>
+                    
                 </Menu>
             </Sidebar>
         </div>
@@ -48,4 +51,4 @@ const StudentDashboard = () => {
   )
 }
 
-export default StudentDashboard
+export default FacultyDashboard 

@@ -18,6 +18,7 @@ import StudentDashboard from './Components/StudentDashboard';
 import FormData from './Components/FormData';
 import Tnp from './Components/Tnp';
 import Faculty from './Components/Faculty';
+import FacultyDashboard from './Components/FacultyDashboard';
 
 
 function App() {
@@ -43,6 +44,9 @@ function App() {
           <Route path='/principal/departments/:dept/faculty' element={<PrinFaculty />}></Route>
           <Route path='/faculty_dashboard' element={<Faculty />}></Route>
           <Route path='/tnp' element={<Tnp />}></Route>
+          <Route path='/facultydashboard' element={<FacultyDashboard />}></Route>
+
+
         </Routes> 
       </BrowserRouter>
     </>
