@@ -17,7 +17,7 @@ const navigate = useNavigate();
    
  
     return (
-        <div className="h-screen bg-slate-100">
+        <div className="bg-slate-100">
           <NavbarComp />
           <div className="container mx-auto px-6 py-12">
             <h1 className="text-3xl md:text-5xl font-semibold mb-12 text-center">Training and Placement Department</h1>
@@ -44,7 +44,7 @@ const navigate = useNavigate();
           </div>
         </div>
       );
-}
+};
 
 export default Tnp;
 
