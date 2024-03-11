@@ -39,9 +39,4 @@ const navigate = useNavigate();
   )
 }
 
-<<<<<<< HEAD
 export default Faculty;
-=======
-export default Faculty;
-
->>>>>>> f9ec2b486ac359cebd1b07405642e7286985b447
