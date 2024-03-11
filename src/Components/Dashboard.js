@@ -35,7 +35,7 @@ const HomeComp = () => {
         <div className='flex justify-center flex-wrap items-center gap-10 w-full my-10'>
             {forms.map((form,index) => {
                 return (
-                        <div key={index} onClick={() => {navigate('/form',{state:{id:form._id}})}} className='flex items-center hover:scale-105 md:w-[80%] w-[90%] px-3 py-4 rounded text-md md:text-lg justify-center bg-gradient-to-r from-[#183d76] to-[#000] text-white'>
+                        <div key={index} onClick={() => {navigate('/form',{state:{id:form._id,dept:location.state.dept}})}} className='flex items-center hover:scale-105 md:w-[80%] w-[90%] px-3 py-4 rounded text-md md:text-lg justify-center bg-gradient-to-r from-[#183d76] to-[#000] text-white'>
                         <p className='my-auto'>{form.formname}</p>
                     </div>
                 )

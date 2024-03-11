@@ -1,5 +1,6 @@
 import './App.css';
 import {BrowserRouter,Routes,Route} from 'react-router-dom'
+import '../node_modules/bootstrap/dist/css/bootstrap.css';
 import HomeComp from './Components/HomeComp';
 import AnimCursor from './Components/AnimCursor';
 import Sforgot from './StudentComponents/Sforgot';
@@ -11,6 +12,10 @@ import Formbook from './FacultyComponents/Formbook';
 import Principal from './Components/Principal';
 import PrinDepartment from './Components/PrinDepartment';
 import PrinDeptDashboard from './Components/PrinDeptDashboard';
+import PrinStudents from './Components/PrinStudents';
+import PrinFaculty from './Components/PrinFaculty';
+import StudentDashboard from './Components/StudentDashboard';
+import FormData from './Components/FormData';
 
 
 function App() {
@@ -29,6 +34,11 @@ function App() {
           <Route path='/principal' element={<Principal />}></Route>
           <Route path='/principal/departments' element={<PrinDepartment />}></Route>
           <Route path='/principal/departments/:dept' element={<PrinDeptDashboard />}></Route>
+          <Route path='/student/:id' element={<StudentDashboard />}></Route>
+          <Route path='/faculty/:id' element={<PrinDeptDashboard />}></Route>
+          <Route path='/formdata/:id' element={<FormData />}></Route>
+          <Route path='/principal/departments/:dept/students' element={<PrinStudents />}></Route>
+          <Route path='/principal/departments/:dept/faculty' element={<PrinFaculty />}></Route>
 
         </Routes> 
       </BrowserRouter>

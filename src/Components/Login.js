@@ -16,7 +16,7 @@ export const Login = () => {
     axios.post('http://localhost:8000/login',{uname:uname,pwd:pwd})
     .then((res) => {
       if(res.data.login){
-        Navigate('/dashboard',{state:{role:res.data.role,fname:res.data.fname}})
+        Navigate('/dashboard',{state:{role:res.data.role,fname:res.data.fname,dept:res.data.dept}})
       }else{
         setErr("*Invalid username or password")
       }
