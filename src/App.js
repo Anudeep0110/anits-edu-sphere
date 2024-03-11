@@ -16,6 +16,7 @@ import PrinStudents from './Components/PrinStudents';
 import PrinFaculty from './Components/PrinFaculty';
 import StudentDashboard from './Components/StudentDashboard';
 import FormData from './Components/FormData';
+import Tnp from './Components/Tnp';
 
 
 function App() {
