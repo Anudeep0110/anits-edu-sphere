@@ -38,14 +38,12 @@ function App() {
           <Route path='/principal/departments' element={<PrinDepartment />}></Route>
           <Route path='/principal/departments/:dept' element={<PrinDeptDashboard />}></Route>
           <Route path='/student/:id' element={<StudentDashboard />}></Route>
-          <Route path='/faculty/:id' element={<PrinDeptDashboard />}></Route>
+          <Route path='/faculty/:id' element={<FacultyDashboard />}></Route>
           <Route path='/formdata/:id' element={<FormData />}></Route>
           <Route path='/principal/departments/:dept/students' element={<PrinStudents />}></Route>
           <Route path='/principal/departments/:dept/faculty' element={<PrinFaculty />}></Route>
           <Route path='/faculty_dashboard' element={<Faculty />}></Route>
           <Route path='/tnp' element={<Tnp />}></Route>
-          <Route path='/facultydashboard' element={<FacultyDashboard />}></Route>
-
 
         </Routes> 
       </BrowserRouter>
