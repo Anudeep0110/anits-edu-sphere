@@ -40,7 +40,7 @@ function App() {
           <Route path='/formdata/:id' element={<FormData />}></Route>
           <Route path='/principal/departments/:dept/students' element={<PrinStudents />}></Route>
           <Route path='/principal/departments/:dept/faculty' element={<PrinFaculty />}></Route>
-
+          
         </Routes> 
       </BrowserRouter>
     </>
