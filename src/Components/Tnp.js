@@ -15,28 +15,35 @@ const navigate = useNavigate();
         })
     },[])
    
-  return (
-    <div className='h-screen w-full bg-slate-100'>
-        <NavbarComp />
-        <div className='w-full h-full flex flex-col items-center'>
-            <div className=' md:w-[80%] w-[95%] p-12'><h1 className='text-xl md:text-3xl font-semibold float-left'>Welcome Principal ANITS,</h1></div>
-            <div className='p-10 md:w-[80%] w-full flex flex-wrap md:gap-12 gap-x-24 gap-y-3'>
-            <div className='flex flex-col text-center font-semibold hover:font-bold text-gray-900'>
-                        <div onClick={() => {navigate('/dashboard',{state:{role:'tnp',fname:'Traning and Placement'}})}} className='bg-[#1f4886] rounded text-white font-medium md:text-5xl text-3xl shadow hover:scale-105 hover:shadow-black hover:shadow-lg flex justify-center items-center w-[75px] md:w-[100px] md:h-[100px] h-[75px]'><FcDepartment /></div>
-                        <p className='text-black md:text-md text-xs'>Fill forms</p>
-                        </div>
-                {forms.map((form,index) => {
-                    return (
-                        <div className='flex flex-col text-center font-semibold hover:font-bold text-gray-900'>
-                        <div key={index} className='bg-[#1f4886] rounded text-white font-medium md:text-5xl text-3xl shadow hover:scale-105 hover:shadow-black hover:shadow-lg flex justify-center items-center w-[75px] md:w-[100px] md:h-[100px] h-[75px]'><FcDepartment /></div>
-                        <p className='text-black md:text-md text-xs'>{form.formname}</p>
-                        </div>
-                )}
-                )}          
+ 
+    return (
+        <div className="h-screen bg-slate-100">
+          <NavbarComp />
+          <div className="container mx-auto px-6 py-12">
+            <h1 className="text-3xl md:text-5xl font-semibold mb-12 text-center">Training and Placement Department</h1>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+              <div
+                onClick={() => {
+                  navigate('/dashboard', { state: { role: 'tnp', fname: 'Training and Placement' } });
+                }}
+                className="text-center">
+                <div className="bg-[#1f4886] text-white text-3xl md:text-5xl w-24 md:w-32 h-24 md:h-32 flex items-center justify-center mx-auto mb-4 shadow-md hover:scale-105 hover:shadow-black hover:shadow-lg rounded-lg">
+                  <FcDepartment />
+                </div>
+                <p className="text-sm md:text-md text-gray-900">Fill forms</p>
+              </div>
+              {forms.map((form, index) => (
+                <div key={index} className="text-center">
+                  <div className="bg-[#1f4886] text-white text-3xl md:text-5xl w-24 md:w-32 h-24 md:h-32 flex items-center justify-center mx-auto mb-4 shadow-md hover:scale-105 hover:shadow-black hover:shadow-lg rounded-lg">
+                    <FcDepartment />
+                  </div>
+                  <p className="text-sm md:text-md text-gray-900">{form.formname}</p>
+                </div>
+              ))}
             </div>
+          </div>
         </div>
-    </div>
-  )
+      );
 }
 
 export default Tnp;
