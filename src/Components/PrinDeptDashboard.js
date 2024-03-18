@@ -65,6 +65,12 @@ const PrinDeptDashboard = () => {
         <div className='md:w-[85%] w-[99%] md:p-12 p-3 gap-x-4 gap-y-5 flex flex-wrap justify-center sm:justify-start '>
           <div onClick={() => navigate(`/principal/departments/${dept}/students`)} className='flex flex-col justify-center hover:drop-shadow-2xl hover:scale-110 hover:font-bold items-center'>
             <div className='md:w-[200px] md:h-[200px] w-[150px]  h-[150px] rounded-md'>
+              <img src='/assets/task.png' className=' mix-blend-multiply' alt='Student'></img>
+            </div>
+            <p className='p-1 text-2xl font-semibold'>Your Tasks</p>
+          </div>
+          <div onClick={() => navigate(`/principal/departments/${dept}/students`)} className='flex flex-col justify-center hover:drop-shadow-2xl hover:scale-110 hover:font-bold items-center'>
+            <div className='md:w-[200px] md:h-[200px] w-[150px]  h-[150px] rounded-md'>
               <img src='/assets/prinstudent.png' className=' mix-blend-multiply' alt='Student'></img>
             </div>
             <p className='p-1 text-2xl font-semibold'>Student</p>

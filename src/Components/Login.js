@@ -1,5 +1,7 @@
 import React from 'react'
 import axios from 'axios'
+import Cookies from 'js-cookie'
+import CryptoJs from 'crypto-js'
 import { useNavigate } from 'react-router-dom'
 export const Login = () => {
   const Navigate = useNavigate();
@@ -16,6 +18,8 @@ export const Login = () => {
     axios.post('http://localhost:8000/login',{uname:uname,pwd:pwd})
     .then((res) => {
       if(res.data.login){
+        var cipher = CryptoJs.AES.encrypt(uname,'qa1!@dnwnnk#$^123').toString()
+        Cookies.set('token',cipher,{expires:1})
         Navigate('/dashboard',{state:{role:res.data.role,fname:res.data.fname,dept:res.data.dept}})
       }else{
         setErr("*Invalid username or password")
