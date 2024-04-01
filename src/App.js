@@ -17,9 +17,12 @@ import PrinFaculty from './Components/PrinFaculty';
 import StudentDashboard from './Components/StudentDashboard';
 import FormData from './Components/FormData';
 import Tnp from './Components/Tnp';
+import NSSDashBoard from './Components/NSSDashBoard';
+import IICDashBoard from './Components/IICDashBoard';
+import IQACDashBoard from './Components/IQACDashBoard';
 import Faculty from './Components/Faculty';
-import FacultyDashboard from './Components/FacultyDashboard'; 
-
+import FacultyDashboard from './Components/FacultyDashboard';
+import GlobalSearch from './Components/GlobalSearch';
 
 
 function App() {
@@ -43,9 +46,17 @@ function App() {
           <Route path='/formdata/:id' element={<FormData />}></Route>
           <Route path='/principal/departments/:dept/students' element={<PrinStudents />}></Route>
           <Route path='/principal/departments/:dept/faculty' element={<PrinFaculty />}></Route>
-          <Route path='/facultydashboard' element={<Faculty />}></Route>
-          <Route path='/tnp' element={<Tnp />}></Route> 
- 
+          <Route path='/principal/tnp' element={<Tnp />}></Route>
+          <Route path='/principal/iic' element={<IICDashBoard />}></Route>
+          <Route path='/principal/iqac' element={<IQACDashBoard />}></Route>
+          <Route path='/principal/nss' element={<NSSDashBoard />}></Route>
+          <Route path='/faculty_dashboard' element={<Faculty />}></Route>
+          <Route path='/tnp' element={<Tnp />}></Route>
+          <Route path='/nss' element={<NSSDashBoard />}></Route>
+          <Route path='/iic' element={<IICDashBoard />}></Route>
+          <Route path='/iqac' element={<IQACDashBoard />}></Route>
+          <Route path='/department/:dept' element={<PrinDeptDashboard />}></Route>
+          <Route path='/search' element={<GlobalSearch />}></Route>
         </Routes> 
       </BrowserRouter>
     </>

@@ -20,7 +20,15 @@ export const Login = () => {
       if(res.data.login){
         var cipher = CryptoJs.AES.encrypt(uname,'qa1!@dnwnnk#$^123').toString()
         Cookies.set('token',cipher,{expires:1})
-        Navigate('/dashboard',{state:{role:res.data.role,fname:res.data.fname,dept:res.data.dept}})
+        const role = res.data.role;
+        if(role === 'principal') Navigate('/principal',{state:{role:res.data.role,fname:res.data.fname}})
+        else if(role === 'department') Navigate(`/department/${res.data.dept}`,{state:{role:res.data.role,fname:res.data.fname,dept:res.data.dept}})
+        else if(role === 'student') Navigate(`/student/${uname}`,{state:{role:res.data.role,fname:res.data.fname}})
+        else if(role === 'faculty') Navigate(`/faculty${uname}`,{state:{role:res.data.role,fname:res.data.fname}})
+        else if(role === 'nss') Navigate('/nss',{state:{role:res.data.role,fname:res.data.fname}})
+        else if(role === 'iic') Navigate('/iic',{state:{role:res.data.role,fname:res.data.fname}})
+        else if(role === 'iqac') Navigate('/iqac',{state:{role:res.data.role,fname:res.data.fname}})
+        else if(role === 'tnp') Navigate('/tnp',{state:{role:res.data.role,fname:res.data.fname}})
       }else{
         setErr("*Invalid username or password")
       }
