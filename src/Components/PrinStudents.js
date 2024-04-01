@@ -1,6 +1,7 @@
 import React from 'react';
 import NavbarComp from './NavbarComp';
 import { MDBDataTable } from 'mdbreact';
+import axios from 'axios';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 
 
@@ -11,6 +12,27 @@ const PrinStudents = () => {
     const location = useLocation();
     const navigate = useNavigate()
     const {dept} = useParams()
+
+
+    const [students, setStudents] = React.useState([])
+
+    React.useEffect(() => {
+        const date = new Date()
+        axios.post('http://localhost:8000/getstudents', { dept: dept })
+            .then(res => {
+                let slist = []
+                res.data.map((student,index) => {
+                    slist.push({
+                        name: student.first_name + ' ' + student.last_name,
+                        regno: student.regno,
+                        yearofstudy: date.getFullYear() - student.from_year,
+                        action: <button className='py-1 w-auto px-2 bg-blue-500 text-white rounded-md text-lg font-semibold border' onClick={() => navigate(`/student/${student._id}`)}>View Profile</button>
+                    })
+                })
+                setStudents(slist)
+
+            });
+    },[])
 
     const data = {
         columns: [
@@ -40,20 +62,7 @@ const PrinStudents = () => {
               width: 250,
           }
         ],
-        rows: [
-          {
-              name: 'Tiger Nixon',
-              regno: 'Tiger Nixon',
-              yearofstudy: 'System Architect',
-              action: <button className='py-1 w-auto px-2 bg-blue-500 text-white rounded-md text-lg font-semibold border' onClick={() => navigate('/student/1')}>View Profile</button>,
-            },
-            {
-              name: 'Garrett Winters',
-              regno: 'Accountant',
-              yearofstudy: 'System Architect',
-              action: <button className='py-1 w-auto px-2 bg-blue-500 text-white rounded-md text-lg font-semibold border' onClick={() => navigate('/student/2')}>View Profile</button>,
-            },
-        ]
+        rows: students
       };
 
     const path = location.pathname.split('/');

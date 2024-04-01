@@ -9,9 +9,8 @@ import { GrTableAdd } from "react-icons/gr";
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
-const ProfileContent = () => {
+const ProfileContent = ({student}) => {
 
-    const [fname,setFname] = React.useState('Mandarapu Gnana Sai Sree')
 
     return(
         <>
@@ -21,75 +20,63 @@ const ProfileContent = () => {
                 <div className='grid px-20 gap-12 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'>
                     <div className='flex flex-col'>
                         <p className='font-bold text-xl'>Firstname</p>
-                        <p className='font-semibold text-lg'>{fname}</p>
+                        <p className='font-semibold text-lg'>{student.first_name}</p>
+                    </div>
+                    <div className='flex flex-col'>
+                        <p className='font-bold text-xl'>Middle Name</p>
+                        <p className='font-semibold text-lg'>{student.middle_name}</p>
                     </div>
                     <div className='flex flex-col'>
                         <p className='font-bold text-xl'>LastName</p>
-                        <p className='font-semibold text-lg'>{fname}</p>
+                        <p className='font-semibold text-lg'>{student.last_name}</p>
                     </div>
                     <div className='flex flex-col'>
-                        <p className='font-bold text-xl'>Firstname</p>
-                        <p className='font-semibold text-lg'>{fname}</p>
+                        <p className='font-bold text-xl'>Date of Birth</p>
+                        <p className='font-semibold text-lg'>{new Date(student.date_of_birth).toLocaleDateString()}</p>
                     </div>
                     <div className='flex flex-col'>
-                        <p className='font-bold text-xl'>Firstname</p>
-                        <p className='font-semibold text-lg'>{fname}</p>
-                    </div>
-                    <div className='flex flex-col'>
-                        <p className='font-bold text-xl'>Firstname</p>
-                        <p className='font-semibold text-lg'>{fname}</p>
+                        <p className='font-bold text-xl'>Gender</p>
+                        <p className='font-semibold text-lg'>{student.gender}</p>
                     </div>
                 </div>
             </div>
 
             <div className='flex flex-col w-full '>
-                <h3 className='px-20 py-5 underline'>BioGraphy</h3>
+                <h3 className='px-20 py-5 underline'>Academics</h3>
                 <div className='grid px-20 gap-12 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'>
                     <div className='flex flex-col'>
-                        <p className='font-bold text-xl'>Firstname</p>
-                        <p className='font-semibold text-lg'>{fname}</p>
+                        <p className='font-bold text-xl'>Registration Number</p>
+                        <p className='font-semibold text-lg'>{student.regno}</p>
                     </div>
                     <div className='flex flex-col'>
-                        <p className='font-bold text-xl'>Firstname</p>
-                        <p className='font-semibold text-lg'>{fname}</p>
+                        <p className='font-bold text-xl'>Department</p>
+                        <p className='font-semibold text-lg'>{new String(student.department).toLocaleUpperCase()}</p>
                     </div>
                     <div className='flex flex-col'>
-                        <p className='font-bold text-xl'>Firstname</p>
-                        <p className='font-semibold text-lg'>{fname}</p>
+                        <p className='font-bold text-xl'>Section</p>
+                        <p className='font-semibold text-lg'>{student.section}</p>
                     </div>
                     <div className='flex flex-col'>
-                        <p className='font-bold text-xl'>Firstname</p>
-                        <p className='font-semibold text-lg'>{fname}</p>
+                        <p className='font-bold text-xl'>Academic Start Year</p>
+                        <p className='font-semibold text-lg'>{student.from_year}</p>
                     </div>
                     <div className='flex flex-col'>
-                        <p className='font-bold text-xl'>Firstname</p>
-                        <p className='font-semibold text-lg'>{fname}</p>
+                        <p className='font-bold text-xl'>Academic End Year</p>
+                        <p className='font-semibold text-lg'>{student.to_year}</p>
                     </div>
                 </div>
             </div>
 
             <div className='flex flex-col w-full '>
-                <h3 className='px-20 py-5 underline'>BioGraphy</h3>
+                <h3 className='px-20 py-5 underline'>Contact</h3>
                 <div className='grid px-20 gap-12 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'>
                     <div className='flex flex-col'>
-                        <p className='font-bold text-xl'>Firstname</p>
-                        <p className='font-semibold text-lg'>{fname}</p>
+                        <p className='font-bold text-xl'>Mobile Number</p>
+                        <p className='font-semibold text-lg'>{student.contact}</p>
                     </div>
                     <div className='flex flex-col'>
-                        <p className='font-bold text-xl'>Firstname</p>
-                        <p className='font-semibold text-lg'>{fname}</p>
-                    </div>
-                    <div className='flex flex-col'>
-                        <p className='font-bold text-xl'>Firstname</p>
-                        <p className='font-semibold text-lg'>{fname}</p>
-                    </div>
-                    <div className='flex flex-col'>
-                        <p className='font-bold text-xl'>Firstname</p>
-                        <p className='font-semibold text-lg'>{fname}</p>
-                    </div>
-                    <div className='flex flex-col'>
-                        <p className='font-bold text-xl'>Firstname</p>
-                        <p className='font-semibold text-lg'>{fname}</p>
+                        <p className='font-bold text-xl'>Email</p>
+                        <p className='font-semibold text-lg'>{student.email}</p>
                     </div>
                 </div>
             </div>
@@ -125,6 +112,15 @@ const FacultyDashboard = () => {
     const navigate = useNavigate()
 
     const {id} = useParams()
+    const [student,setStudent] = React.useState({})
+    console.log(id);
+    React.useEffect(() => {
+        axios.post('http://localhost:8000/getstudentdetails',{id:id})
+        .then(response => {
+            console.log(response.data);
+            setStudent(response.data)
+        })
+    })
     const [selectedMenuItem, setSelectedMenuItem] = React.useState('profile');
 
     const [tabledata, setTabledata] = React.useState({
@@ -178,7 +174,7 @@ const FacultyDashboard = () => {
             case 'profile':
                 return (
                     <div className='flex py-10 '>
-                        <ProfileContent />
+                        <ProfileContent student ={student}/>
                     </div>  
                 )
             case 'forms':

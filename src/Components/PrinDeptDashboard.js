@@ -156,13 +156,13 @@ const PrinDeptDashboard = () => {
             </div>
             <p className='p-1 text-2xl font-semibold'>IQAC</p>
           </div>
-          <div onClick={() => navigate('/principal/iic',{state:{role:'iic',fname:'Institution\`s Innovative Council'}})} className='flex flex-col justify-center hover:drop-shadow-2xl hover:scale-110 hover:font-bold items-center'>
+          <div onClick={() => navigate('/principal/iic',{state:{role:'iic',fname:"Institution's Innovative Council"}})} className='flex flex-col justify-center hover:drop-shadow-2xl hover:scale-110 hover:font-bold items-center'>
             <div className='md:w-[200px] md:h-[200px] w-[150px]  h-[150px] rounded-md'>
               <img src='/assets/iic.png' className=' mix-blend-multiply scale-[.75]' alt='Student'></img>
             </div>
             <p className='p-1 text-2xl font-semibold'>IIC</p>
           </div>
-          <div onClick={() => navigate('/principal/iqac',{state:{role:'tnp',fname:'Training and Placement Cell'}})} className='flex flex-col justify-center hover:drop-shadow-2xl hover:scale-110 hover:font-bold items-center'>
+          <div onClick={() => navigate('/principal/tnp',{state:{role:'tnp',fname:'Training and Placement Cell'}})} className='flex flex-col justify-center hover:drop-shadow-2xl hover:scale-110 hover:font-bold items-center'>
             <div className='md:w-[200px] md:h-[200px] w-[150px]  h-[150px] rounded-md'>
               <img src='/assets/tnp.png' className=' mix-blend-multiply scale-[.75]' alt='Student'></img>
             </div>

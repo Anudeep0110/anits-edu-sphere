@@ -1,8 +1,6 @@
 import React from 'react'
 import NavbarComp from './NavbarComp'
-import { useParams } from 'react-router-dom'
-import { Sidebar,Menu,MenuItem,SubMenu } from 'react-pro-sidebar'
-import { MdDashboard } from "react-icons/md";
+import { Sidebar,Menu,MenuItem } from 'react-pro-sidebar'
 import { CgProfile } from "react-icons/cg";
 import { BsDatabaseCheck } from "react-icons/bs";
 import { MDBDataTable } from 'mdbreact';
@@ -12,7 +10,7 @@ import axios from 'axios';
 
 const ProfileContent = () => {
 
-    const [fname,setFname] = React.useState('Mandarapu Gnana Sai Sree')
+    const fname = 'National Service Scheme'
 
     return(
         <>
@@ -125,7 +123,6 @@ const NSSDashBoard = () => {
 
     const navigate = useNavigate()
 
-    const {id} = useParams()
     const [selectedMenuItem, setSelectedMenuItem] = React.useState('profile');
 
     const [tabledata, setTabledata] = React.useState({
@@ -154,7 +151,7 @@ const NSSDashBoard = () => {
     });
 
       const getforms = async () => {
-        axios.post('http://localhost:8000/getformnames',{role:'student'})
+        axios.post('http://localhost:8000/getformnames',{role:'NSS'})
         .then(response => {
         const forms = response.data;
         let rows = [];
@@ -162,7 +159,7 @@ const NSSDashBoard = () => {
             rows.push({
             icon: <GrTableAdd className='text-center scale-150 w-full'/>,
             fname: form.formname,
-            action: <button onClick={() => navigate(`/formdata/${form._id},{state:{formname:form.formname}}`)} className='bg-blue-500 text-white font-semibold rounded-md p-1'>Fill Form</button>
+            action: <button onClick={() => navigate('/form', { state: { id: form._id,formname:form.formname } })} className='bg-blue-500 text-white font-semibold rounded-md p-1'>Fill Form</button>
             
             })
         })
@@ -173,7 +170,7 @@ const NSSDashBoard = () => {
 
 
     const viewforms = async () => {
-        axios.post('http://localhost:8000/getformnames',{role:'student'})
+        axios.post('http://localhost:8000/getformnames',{role:'NSS'})
         .then(response => {
         const forms = response.data;
         let rows = [];
@@ -181,7 +178,7 @@ const NSSDashBoard = () => {
             rows.push({
             icon: <GrTableAdd className='text-center scale-150 w-full'/>,
             fname: form.formname,
-            action: <button onClick={() => navigate(`/formdata/${form._id},{state:{formname:form.formname}}`)} className='bg-blue-500 text-white font-semibold rounded-md p-1'>View Data</button>
+            action: <button onClick={() => navigate(`/formdata/${form._id}`,{state:{formname:form.formname}})} className='bg-blue-500 text-white font-semibold rounded-md p-1'>View Data</button>
             
             })
         })
