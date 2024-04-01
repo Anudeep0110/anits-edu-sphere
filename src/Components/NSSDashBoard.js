@@ -46,4 +46,4 @@ const navigate = useNavigate();
       );
 };
 
-export {NSSDashBoard};
+export default NSSDashBoard;

@@ -46,4 +46,4 @@ const navigate = useNavigate();
       );
 };
 
-export {IICDashBoard};
+export default IICDashBoard;

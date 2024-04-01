@@ -46,4 +46,4 @@ const navigate = useNavigate();
       );
 };
 
-export {IQACDashBoard};
+export default IQACDashBoard;
