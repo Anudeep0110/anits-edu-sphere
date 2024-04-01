@@ -19,10 +19,7 @@ import FormData from './Components/FormData';
 import Tnp from './Components/Tnp';
 import Faculty from './Components/Faculty';
 import FacultyDashboard from './Components/FacultyDashboard'; 
-// import TnpDashboard from './Components/TnpDashboard'; 
-// import IQACDashBoard from './Components/IQACDashBoard';
-// import IICDashBoard from './Components/IICDashBoard';  
-// import NSSDashBoard from './Components/NSSDashBoard'
+
 
 
 function App() {
@@ -48,10 +45,7 @@ function App() {
           <Route path='/principal/departments/:dept/faculty' element={<PrinFaculty />}></Route>
           <Route path='/facultydashboard' element={<Faculty />}></Route>
           <Route path='/tnp' element={<Tnp />}></Route> 
-          {/* <Route path='/tnpdashboard' element={<TnpDashboard />}></Route>
-          <Route path='/iqacdashboard' element={<IQACDashBoard />}></Route>
-          <Route path='/iicdashboard' element={<IICDashBoard />}></Route>
-          <Route path='/nssdashboard' element={<NSSDashBoard />}></Route> */}
+ 
         </Routes> 
       </BrowserRouter>
     </>
