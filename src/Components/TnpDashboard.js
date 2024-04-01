@@ -121,7 +121,7 @@ const FormsContent = ({tabledata}) => {
 };
 
 
-const NSSDashBoard = () => {
+const TnpDashboard = () => {
 
     const navigate = useNavigate()
 
@@ -278,4 +278,4 @@ const NSSDashBoard = () => {
   )
 }
 
-export default NSSDashBoard
+export default TnpDashboard
