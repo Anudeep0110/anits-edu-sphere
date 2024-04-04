@@ -107,7 +107,7 @@ const FormsContent = ({tabledata}) => {
 };
 
 
-const FacultyDashboard = () => {
+const StudentDashboard = () => {
 
     const navigate = useNavigate()
 
@@ -242,4 +242,4 @@ const FacultyDashboard = () => {
   )
 }
 
-export default FacultyDashboard 
+export default StudentDashboard 
