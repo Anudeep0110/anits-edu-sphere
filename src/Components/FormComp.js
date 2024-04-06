@@ -29,11 +29,16 @@ const FormComp = () => {
 
     const submitted = async (e) => {
         e.preventDefault();
-        await axios.post('http://localhost:8000/sendtodb',{data:formdata,formid:location.state.id})
+        const formDataWithId = {
+            formid: location.state.id,
+            data: formdata,
+            
+        };
+        await axios.post('http://localhost:8000/sendtoapprovals', formDataWithId)
         .then(res => {
             console.log(res.data);
             setStatus(true);    
-            toast.success('Data Saved successfully!',{
+            toast.success('Data Saved successfully!', {
                 position: "top-right",
                 autoClose: 3000,
                 hideProgressBar: false,
@@ -47,7 +52,7 @@ const FormComp = () => {
         .catch(err => {
             console.log(err);
             setStatus(false);
-            toast.error('Data not saved! Please Try Again Later!',{
+            toast.error('Data not saved! Please Try Again Later!', {
                 position: "top-right",
                 autoClose: 3000,
                 hideProgressBar: false,
@@ -57,8 +62,9 @@ const FormComp = () => {
                 progress: undefined,
                 theme: "light",
             });
-        })
+        });
     }
+    
 
 
 return (

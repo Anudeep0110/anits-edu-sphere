@@ -162,7 +162,7 @@ const FacultyDashboard = () => {
             rows.push({
             icon: <GrTableAdd className='text-center scale-150 w-full'/>,
             fname: form.formname,
-            action: <button onClick={() => navigate(`/formdata/${form._id}`,{state:{formname:form.formname}})} className='bg-blue-500 text-white font-semibold rounded-md p-1'>View Data</button>
+            action: <button onClick={() => navigate(`/form`,{ state: { id: form._id,formname:form.formname } })}  className='bg-blue-500 text-white font-semibold rounded-md p-1'>Fill Form</button>
             })
         })
         setTabledata({...tabledata, rows: rows}); 

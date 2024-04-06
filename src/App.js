@@ -22,6 +22,11 @@ import IQACDashBoard from './Components/IQACDashBoard';
 import TnpDashboard from './Components/TnpDashboard';
 import FacultyDashboard from './Components/FacultyDashboard';
 import GlobalSearch from './Components/GlobalSearch';
+import ApprovalData from './Components/ApprovalsDashboard';
+import FormForApproval from './Components/FormForApproval';
+import Facultystudentapproval from './Components/DeptAppr';
+
+
 
 
 function App() {
@@ -54,6 +59,9 @@ function App() {
           <Route path='/iqac' element={<IQACDashBoard />}></Route>
           <Route path='/department/:dept' element={<PrinDeptDashboard />}></Route>
           <Route path='/search' element={<GlobalSearch />}></Route>
+          <Route path='/department/approvals/:id' element={<ApprovalData />}></Route>
+          <Route path='/department/dataauthentication' element={<Facultystudentapproval />}></Route>
+          <Route path='/department/formforapproval/:role' element={<FormForApproval />}></Route>
         </Routes> 
       </BrowserRouter>
     </>
