@@ -13,7 +13,7 @@ const HomeComp = () => {
     const [searchTerm, setSearchTerm] = React.useState('');
 
     React.useEffect(() => {
-        axios.post('http://localhost:8000/getforms', { role: location.state.role })
+        axios.post('http://localhost:8000/getforms', { role: 'faculty' })
             .then(res => {
                 setForms(res.data);
             });
@@ -22,6 +22,8 @@ const HomeComp = () => {
     const handleSearch = (e) => {
         setSearchTerm(e.target.value);
     };
+
+    const fname = 'M Sai Sree'
 
     const filteredForms = forms.filter(form =>
         form.formname.toLowerCase().includes(searchTerm.toLowerCase())
@@ -33,7 +35,7 @@ const HomeComp = () => {
             <div className='w-full flex justify-center'>
                 <div className='md:w-[80%] p-4 w-[90%] flex justify-between'>
                     <p className='my-auto text-3xl font-semibold'>
-                        Welcome <span className='font-bold'>{location.state.fname}</span>
+                        Welcome <span className='font-bold'>{fname}</span>
                     </p>
                     <input
                         type='search'

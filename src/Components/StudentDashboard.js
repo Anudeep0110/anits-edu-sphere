@@ -118,9 +118,9 @@ const StudentDashboard = () => {
         axios.post('http://localhost:8000/getstudentdetails',{id:id})
         .then(response => {
             console.log(response.data);
-            setStudent(response.data)
+            setStudent(response.data[0])
         })
-    })
+    },[id])
     const [selectedMenuItem, setSelectedMenuItem] = React.useState('profile');
 
     const [tabledata, setTabledata] = React.useState({
