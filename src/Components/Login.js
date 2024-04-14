@@ -29,6 +29,7 @@ export const Login = () => {
         else if(role === 'iic') Navigate('/iic',{state:{role:res.data.role,fname:res.data.fname}})
         else if(role === 'iqac') Navigate('/iqac',{state:{role:res.data.role,fname:res.data.fname}})
         else if(role === 'tnp') Navigate('/tnp',{state:{role:res.data.role,fname:res.data.fname}})
+        else if(role === 'admin') Navigate('/admin',{state:{role:res.data.role,fname:res.data.fname}})
       }else{
         setErr("*Invalid username or password")
       }

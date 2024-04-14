@@ -25,6 +25,12 @@ import GlobalSearch from './Components/GlobalSearch';
 import ApprovalData from './Components/ApprovalsDashboard';
 import FormForApproval from './Components/FormForApproval';
 import Facultystudentapproval from './Components/DeptAppr';
+import Admin from './Components/Admin';
+import ImportStudents from './Components/ImportStudents';
+import ImportFaculty from './Components/ImportFaculty';
+import CreateForm from './Components/CreateForm';
+import FormBuilder from './Components/FormBuilder';
+import AdminViewForm from './Components/AdminViewForm';
 
 
 
@@ -62,6 +68,12 @@ function App() {
           <Route path='/department/approvals/:id' element={<ApprovalData />}></Route>
           <Route path='/department/dataauthentication' element={<Facultystudentapproval />}></Route>
           <Route path='/department/formforapproval/:role' element={<FormForApproval />}></Route>
+          <Route path='/admin' element={<Admin />}></Route>
+          <Route path='/import/students' element={<ImportStudents />}></Route>
+          <Route path='/import/faculty' element={<ImportFaculty />}></Route>
+          <Route path='/formbuilder' element={<FormBuilder />}></Route>
+          <Route path='/createform' element={<CreateForm />}></Route>
+          <Route path='/viewform/:id' element={<AdminViewForm />}></Route>
         </Routes> 
       </BrowserRouter>
     </>

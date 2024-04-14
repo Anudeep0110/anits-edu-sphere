@@ -1,3 +1,4 @@
+/* eslint-disable array-callback-return */
 import React from 'react';
 import NavbarComp from './NavbarComp';
 import { MDBDataTable } from 'mdbreact';
@@ -26,13 +27,13 @@ const PrinStudents = () => {
                         name: student.first_name + ' ' + student.last_name,
                         regno: student.regno,
                         yearofstudy: date.getFullYear() - student.from_year,
-                        action: <button className='py-1 w-auto px-2 bg-blue-500 text-white rounded-md text-lg font-semibold border' onClick={() => navigate(`/student/${student._id}`)}>View Profile</button>
+                        action: <button className='py-1 w-auto px-2 bg-blue-500 text-white rounded-md text-lg font-semibold border' onClick={() => navigate(`/student/${student.regno}`)}>View Profile</button>
                     })
                 })
                 setStudents(slist)
 
             });
-    },[])
+    },[dept, navigate])
 
     const data = {
         columns: [
