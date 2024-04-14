@@ -1,19 +1,35 @@
 import React from 'react'
 import NavbarComp from './NavbarComp'
 import GlobalSearch from './GlobalSearch'
+import axios from 'axios'
+import { useNavigate } from 'react-router-dom'
+
 
 const Principal = () => {
+    const Navigate = useNavigate();
+
 
     const cards = [
         {name:'Departments',redirect:'/principal/departments',icon:<img className='hover:drop-shadow-lg hover:scale-125' src='/assets/dept.webp' alt=''></img>},
         {name:'NSS',redirect:'/principal/nss',icon:<img className='hover:drop-shadow-lg hover:scale-125' src='/assets/nss.png' alt=''></img>},
         {name:'IQAC',redirect:'/principal/iqac',icon:<img className='hover:drop-shadow-lg hover:scale-125' src='/assets/iqac.png' alt=''></img>},
     ]
+    const handleSearch = (searchText) => {
+        // Perform your search logic here using the searchText
+        axios.post('http://localhost:8000/verify_query',{searchText:searchText})
+        .then((res) => {
+            console.log("responseee",res.status)
+            Navigate(`/student/${searchText}`)
+        })
+        console.log('Search text:', searchText);
+        // Example: You can call an API or perform any other action based on the searchText
+      };
+
 
   return (
     <div className='min-h-screen w-full bg-slate-100'>
         <NavbarComp />
-        <GlobalSearch />
+        <GlobalSearch onEnter={handleSearch}/>
         <div className='w-full h-full flex flex-col items-center'>
             <div className=' md:w-[80%] w-[95%] p-12'><h1 className='text-xl md:text-3xl font-semibold float-left'>Welcome Principal ANITS,</h1></div>
             <div className='p-10 md:w-[80%] w-full flex flex-wrap md:gap-24 gap-x-8 gap-y-3'>

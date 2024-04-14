@@ -18,7 +18,7 @@ const PrinDepartment = () => {
   return (
     <div className='min-h-screen w-full bg-slate-100'>
         <NavbarComp />
-        <GlobalSearch />
+        {/* <GlobalSearch /> */}
         <div className='w-full h-full flex flex-col items-center'>
             <div className=' md:w-[80%] w-[95%] p-12'><h1 className='text-xl md:text-3xl font-semibold float-left'>All the Departments here</h1></div>
             <div className='p-10 md:w-[80%] w-full flex flex-wrap md:gap-12 gap-x-24 gap-y-3'>
