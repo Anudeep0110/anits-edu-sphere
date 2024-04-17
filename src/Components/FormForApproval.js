@@ -31,7 +31,7 @@ const FormForApproval = () => {
     useEffect(() => {
         const fetchFormNames = async () => {
             try {
-                const response = await axios.post('http://localhost:8000/getformnames', { role: role.toLowerCase() });
+                const response = await axios.post('http://localhost:8000/getformnamesappr', { role: role.toLowerCase() });
                 const forms = response.data;
                 let rows = [];
                 forms.forEach(form => {
