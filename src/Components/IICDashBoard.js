@@ -5,7 +5,7 @@ import { CgProfile } from "react-icons/cg";
 import { BsDatabaseCheck } from "react-icons/bs";
 import { MDBDataTable } from 'mdbreact';
 import { GrTableAdd } from "react-icons/gr";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams,useLocation } from 'react-router-dom';
 import axios from 'axios';
 
 const ProfileContent = () => {
@@ -120,6 +120,9 @@ const FormsContent = ({tabledata}) => {
 
 
 const IICDashBoard = () => {
+    const location = useLocation();
+
+    const path = location.pathname.split('/'); 
 
     const navigate = useNavigate()
 
@@ -243,14 +246,20 @@ const IICDashBoard = () => {
                         </div> */}
                     </MenuItem>
                     <MenuItem icon = {<CgProfile />}  onClick={() => handleMenuItemClick('profile')} isActive={selectedMenuItem === 'profile'}>Profile</MenuItem>
-                    <MenuItem icon = {<BsDatabaseCheck />} onClick={() => {
+
+
+                    {path.indexOf('principal') === -1 ?
+            <div>
+            <MenuItem icon = {<BsDatabaseCheck />} onClick={() => {
                         handleMenuItemClick('forms');
                         getforms();
-                    }} 
-
-                    
+                    }}                     
                     isActive={selectedMenuItem === 'forms'}>Forms</MenuItem>
-                    
+          </div>:
+          <></>
+          }
+
+
                     <MenuItem icon = {<BsDatabaseCheck />} onClick={() => {
                         handleMenuItemClick('forms'); 
                         viewforms();

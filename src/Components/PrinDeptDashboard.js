@@ -117,6 +117,7 @@ const PrinDeptDashboard = () => {
             </div>
             <p className='p-1 text-2xl font-semibold'>Your Tasks</p>
           </div>
+
           {path.indexOf('principal') === -1 ?
             <div onClick={fillforms} className='flex flex-col justify-center hover:drop-shadow-2xl hover:scale-110 hover:font-bold items-center'>
             <div className='md:w-[200px] md:h-[200px] w-[150px]  h-[150px] rounded-md'>
@@ -126,6 +127,7 @@ const PrinDeptDashboard = () => {
           </div>:
           <></>
           }
+
           <div onClick={viewData} className='flex flex-col justify-center hover:drop-shadow-2xl hover:scale-110 hover:font-bold items-center'>
             <div className='md:w-[200px] md:h-[200px] w-[150px]  h-[150px] rounded-md'>
               <img src='/assets/viewdata.png' className=' mix-blend-multiply' alt='Student'></img>
