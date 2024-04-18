@@ -211,7 +211,7 @@ const StudentDashboard = () => {
                         <div className='h-[200px] flex justify-center items-center'>
                             <div className='w-[100px] h-[100px] '>
                                 <img alt='Profile' src='/assets/profile.png'></img>
-                                <p className='flex justify-center text-blue-950'>Anudeep Gude</p>
+                                <p className='flex justify-center text-blue-950'>{`${student.first_name} ${student.last_name}`}</p>
                             </div>
                         </div>
 
