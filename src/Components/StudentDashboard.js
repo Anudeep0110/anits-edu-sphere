@@ -149,7 +149,7 @@ const StudentDashboard = () => {
         rows: []
     });
     const viewforms = async () => {
-        axios.post('http://localhost:8000/getformnames',{role:'student',studentId:id})
+        axios.post('http://localhost:8000/getformnames1',{role:'student',studentId:id})
         .then(response => {
         const forms = response.data;
         let rows = [];
