@@ -23,8 +23,9 @@ const FormData = () => {
                     with:200
                 }));
                 setColumns(newColumns);
-
-                const rowResponse = await axios.post('http://localhost:8000/getformdata', { id: id });
+                const studentId = location.state.studentId;
+                const employee_id = location.state.employee_id;
+                const rowResponse = await axios.post('http://localhost:8000/getformdata', { id: id , studentId: studentId,employee_id:employee_id});
                 setRows(rowResponse.data);
             } catch (error) {
                 console.log(error);

@@ -1,6 +1,5 @@
 import React from 'react'
 import NavbarComp from './NavbarComp'
-import { useParams } from 'react-router-dom'
 import { Sidebar,Menu,MenuItem } from 'react-pro-sidebar'
 import { CgProfile } from "react-icons/cg";
 import { BsDatabaseCheck } from "react-icons/bs";
@@ -8,6 +7,8 @@ import { MDBDataTable } from 'mdbreact';
 import { GrTableAdd } from "react-icons/gr";
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { useParams } from 'react-router-dom'
+
 
 const ProfileContent = ({student}) => {
 
@@ -147,7 +148,23 @@ const StudentDashboard = () => {
         ],
         rows: []
     });
-
+    const viewforms = async () => {
+        axios.post('http://localhost:8000/getformnames',{role:'student',studentId:id})
+        .then(response => {
+        const forms = response.data;
+        let rows = [];
+        forms.forEach(form => {
+            rows.push({
+            icon: <GrTableAdd className='text-center scale-150 w-full'/>,
+            fname: form.formname,
+            action: <button onClick={() => navigate(`/formdata/${form._id}`,{state:{formname:form.formname,studentId:id}})} className='bg-blue-500 text-white font-semibold rounded-md p-1'>View Data</button>
+            
+            })
+        })
+        setTabledata({...tabledata, rows: rows}); 
+        console.log(tabledata);
+      })
+    }
       const getforms = async () => {
         axios.post('http://localhost:8000/getformnames',{role:'student'})
         .then(response => {
@@ -157,7 +174,7 @@ const StudentDashboard = () => {
             rows.push({
             icon: <GrTableAdd className='text-center scale-150 w-full'/>,
             fname: form.formname,
-            action: <button onClick={() => navigate(`/formdata/${form._id}`,{state:{formname:form.formname}})} className='bg-blue-500 text-white font-semibold rounded-md p-1'>View Data</button>
+            action: <button onClick={() => navigate(`/form`,{ state: { id: form._id,formname:form.formname , studentId: id,role:'student'} })}  className='bg-blue-500 text-white font-semibold rounded-md p-1'>Fill Form</button>
             })
         })
         setTabledata({...tabledata, rows: rows}); 
@@ -202,6 +219,7 @@ const StudentDashboard = () => {
 
                     root:{
                         color:"black",
+                        
                     },
                     
                 }}>
@@ -226,10 +244,15 @@ const StudentDashboard = () => {
                         getforms();
                     }} 
                     isActive={selectedMenuItem === 'forms'}>Forms</MenuItem>
-                    <MenuItem>Publications</MenuItem>
-                    <MenuItem>Qualification</MenuItem>
-                    <MenuItem>Experience</MenuItem>
-                    <MenuItem>Time Table</MenuItem>
+                   
+                   <MenuItem icon = {<BsDatabaseCheck />} onClick={() => {
+                        handleMenuItemClick('forms'); 
+                        viewforms();
+                    }}
+                    isActive={selectedMenuItem === 'forms'}> View Forms</MenuItem>
+
+                    
+                    
                     
                 </Menu>
             </Sidebar>

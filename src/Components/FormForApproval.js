@@ -8,7 +8,7 @@ import { GrTableAdd } from 'react-icons/gr';
 
 const FormForApproval = () => {
     const navigate = useNavigate();
-    const {role} = useParams()
+    const {role,dept} = useParams()
 
     const [tabledata, setTabledata] = useState({
         columns: [
@@ -38,7 +38,7 @@ const FormForApproval = () => {
                     rows.push({
                         icon: <GrTableAdd className='text-center scale-150 w-full' />,
                         fname: form.formname,
-                        action: <button onClick={() => navigate(`/department/approvals/${form._id}`, { state: { formname: form.formname } })} className='bg-blue-500 text-white font-semibold rounded-md p-1'>Approve Data</button>
+                        action: <button onClick={() => navigate(`/${dept}/approvals/${form._id}`, { state: { formname: form.formname } })} className='bg-blue-500 text-white font-semibold rounded-md p-1'>Approve Data</button>
                     });
                 });
                 setTabledata({ ...tabledata, rows: rows });
