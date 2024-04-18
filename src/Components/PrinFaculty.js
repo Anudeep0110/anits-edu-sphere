@@ -1,16 +1,39 @@
+/* eslint-disable array-callback-return */
 import React from 'react';
 import NavbarComp from './NavbarComp';
 import { MDBDataTable } from 'mdbreact';
+import axios from 'axios';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 
 
-const PrinFaculty = () => {
+const PrinStudents = () => {
 
 
     const tableRef = React.createRef();
     const location = useLocation();
     const navigate = useNavigate()
     const {dept} = useParams()
+
+
+    const [students, setStudents] = React.useState([])
+
+    React.useEffect(() => {
+        const date = new Date()
+        axios.post('http://localhost:8000/getfaculty', { dept: dept })
+            .then(res => {
+                let slist = []
+                res.data.map((faculty,index) => {
+                    slist.push({
+                        name: faculty.first_name + ' ' + faculty.last_name,
+                        employee_id: faculty.employee_id,
+                        designation: faculty.designation,
+                        action: <button className='py-1 w-auto px-2 bg-blue-500 text-white rounded-md text-lg font-semibold border' onClick={() => navigate(`/faculty/${faculty.employee_id}`)}>View Profile</button>
+                    })
+                })
+                setStudents(slist)
+
+            });
+    },[dept, navigate])
 
     const data = {
         columns: [
@@ -21,7 +44,7 @@ const PrinFaculty = () => {
             width: 200
           },
           {
-            label: 'Faculty ID',
+            label: 'Roll Number',
             field: 'regno',
             sort: 'asc',
             width: 200
@@ -40,20 +63,7 @@ const PrinFaculty = () => {
               width: 250,
           }
         ],
-        rows: [
-          {
-              name: 'Tiger Nixon',
-              regno: 'Tiger Nixon',
-              yearofstudy: 'System Architect',
-              action: <button className='py-1 w-auto px-2 bg-blue-500 text-white rounded-md text-lg font-semibold border' onClick={() => navigate('/faculty/1')}>View Profile</button>,
-            },
-            {
-              name: 'Garrett Winters',
-              regno: 'Accountant',
-              yearofstudy: 'System Architect',
-              action: <button className='py-1 w-auto px-2 bg-blue-500 text-white rounded-md text-lg font-semibold border' onClick={() => navigate('/faculty/2')}>View Profile</button>,
-            },
-        ]
+        rows: students
       };
 
     const path = location.pathname.split('/');
@@ -84,4 +94,4 @@ const PrinFaculty = () => {
   );
 };
 
-export default PrinFaculty;
+export default PrinStudents;
