@@ -3,6 +3,8 @@ import NavbarComp from './NavbarComp'
 import GlobalSearch from './GlobalSearch'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
+import { toast, ToastContainer } from 'react-toastify';
+
 
 
 const Principal = () => {
@@ -18,16 +20,30 @@ const Principal = () => {
         // Perform your search logic here using the searchText
         axios.post('http://localhost:8000/verify_query',{searchText:searchText})
         .then((res) => {
-            console.log("responseee",res.status)
-            Navigate(`/student/${searchText}`)
+            if(res.data.role == 'student'){
+                Navigate(`/student/${searchText}`)
+            }else if(res.data.role == 'faculty'){
+                Navigate(`/faculty/${searchText}`)
+            }else if(res.data.role == 'no_role'){
+                toast.error('Invalid Data! Please Try Again Later!', {
+                    position: "top-right",
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                });
+                Navigate(`/principal`)
+            }
         })
-        console.log('Search text:', searchText);
-        // Example: You can call an API or perform any other action based on the searchText
       };
 
 
   return (
     <div className='min-h-screen w-full bg-slate-100'>
+        <ToastContainer/>   
         <NavbarComp />
         <GlobalSearch onEnter={handleSearch}/>
         <div className='w-full h-full flex flex-col items-center'>

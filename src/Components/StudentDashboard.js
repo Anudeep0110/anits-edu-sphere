@@ -114,7 +114,7 @@ const StudentDashboard = () => {
 
     const {id} = useParams()
     const [student,setStudent] = React.useState({})
-    console.log(id);
+    console.log("kjhgvbhjklkjhg",id);
     React.useEffect(() => {
         axios.post('http://localhost:8000/getstudentdetails',{id:id})
         .then(response => {
