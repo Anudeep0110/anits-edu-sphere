@@ -22,18 +22,47 @@ const FormComp = () => {
     React.useEffect(() => {
         axios.post('http://localhost:8000/getform',{id:location.state.id})
         .then(res => {
-            setForm(res.data)
+            setForm(res.data) 
             setIsloading(false);
         })
     },[location.state.id])
 
     const submitted = async (e) => {
         e.preventDefault();
-        const formDataWithId = {
-            formid: location.state.id,
-            data: formdata,
+        let additionalFields = {};
+        if (location.state.role === 'student' ) {
+            try {
+                const response = await axios.post('http://localhost:8000/getAdditionalFields', { studentId: location.state.studentId});
+                additionalFields = response.data;
+                console.log(additionalFields)
+            } catch (error) {
+                console.error('Error fetching additional fields:', error);
+                return;
+            }
+        }
+        else if (location.state.role === 'faculty' ) {
+            try {
+                const response = await axios.post('http://localhost:8000/getAdditionalFields', { employee_id: location.state.employee_id});
+                additionalFields = response.data;
+                console.log(additionalFields)
+            } catch (error) {
+                console.error('Error fetching additional fields:', error);
+                return;
+            }
+        }
+        const formDataWithAdditionalFields = {
+            
+            ...additionalFields,
+            ...formdata
             
         };
+    
+    
+        const formDataWithId = {
+            formid: location.state.id,
+            data: formDataWithAdditionalFields,
+        };
+    
         await axios.post('http://localhost:8000/sendtoapprovals', formDataWithId)
         .then(res => {
             console.log(res.data);
@@ -64,6 +93,7 @@ const FormComp = () => {
             });
         });
     }
+    
     
 
 

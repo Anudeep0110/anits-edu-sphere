@@ -6,7 +6,7 @@ import { MDBDataTable } from 'mdbreact';
 
 const ApprovalData = () => {
     const location = useLocation();
-    const { id } = useParams();
+    const { id ,dept} = useParams();
 
     const [col, setColumns] = useState([]);
     const [data, setRows] = useState([]);
@@ -23,9 +23,9 @@ const ApprovalData = () => {
             }));
             setColumns(newColumns);
 
-            const approvalResponse = await axios.post('http://localhost:8000/getapprovals', { formid: id });
+            const approvalResponse = await axios.post('http://localhost:8000/getapprovals', { formid: id ,dept:dept});
             const newData = approvalResponse.data.map(approval => ({
-                ...approval.data, // Extracting the 'data' field from each approval
+                ...approval.data, 
                 action: (
                     <div>
                         <button className='bg-green-500 text-white font-semibold rounded-md p-1' onClick={() => handleApprove(approval._id)}>Approve</button>

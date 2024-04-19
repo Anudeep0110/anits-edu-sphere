@@ -24,7 +24,7 @@ export const Login = () => {
         if(role === 'principal') Navigate('/principal',{state:{role:res.data.role,fname:res.data.fname}})
         else if(role === 'department') Navigate(`/department/${res.data.dept}`,{state:{role:res.data.role,fname:res.data.fname,dept:res.data.dept}})
         else if(role === 'student') Navigate(`/student/${res.data.regno}`,{state:{role:res.data.role,fname:res.data.fname}})
-        else if(role === 'faculty') Navigate(`/faculty/${uname}`,{state:{role:res.data.role,fname:res.data.fname}})
+        else if(role === 'faculty') Navigate(`/faculty/${res.data.regno}`,{state:{role:res.data.role,fname:res.data.fname,dept:res.data.dept}})
         else if(role === 'nss') Navigate('/nss',{state:{role:res.data.role,fname:res.data.fname}})
         else if(role === 'iic') Navigate('/iic',{state:{role:res.data.role,fname:res.data.fname}})
         else if(role === 'iqac') Navigate('/iqac',{state:{role:res.data.role,fname:res.data.fname}})

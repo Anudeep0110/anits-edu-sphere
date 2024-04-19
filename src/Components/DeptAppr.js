@@ -5,11 +5,11 @@ import { useNavigate, useParams } from 'react-router-dom';
 
 const Facultystudentapproval = () => {
     const navigate = useNavigate();
-    
+    const{dept}=useParams();
 
     const handleReviewData = (role) => {
         // Navigate to the review data page for the selected role
-        navigate(`/department/formforapproval/${role}`);
+        navigate(`/${dept}/formforapproval/${role}`);
     };
 
     const data = {

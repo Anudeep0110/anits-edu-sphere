@@ -20,17 +20,38 @@ const FormData = () => {
                     label: col.colname,
                     field: col.name,
                     sort: 'asc',
-                    with:200
+                    width: 200
                 }));
+            
+                const studentId = location.state.studentId;
+                const employee_id = location.state.employee_id;
+                if (studentId || employee_id) {
+                    // Add a new column for "Approval Status" if studentId or employee_id is present
+                    newColumns.push({
+                        label: 'Approval Status',
+                        field: 'approval',
+                        sort: 'asc',
+                        width: 200
+                    });
+                }
+            
                 setColumns(newColumns);
-
-                const rowResponse = await axios.post('http://localhost:8000/getformdata', { id: id });
-                setRows(rowResponse.data);
+            
+                const rowResponse = await axios.post('http://localhost:8000/getformdata', { id: id, studentId: studentId, employee_id: employee_id });
+                const newData = rowResponse.data.map(approval => {
+                    // If studentId or employee_id is present, include the approval status in the row data
+                    const rowData = {
+                        ...approval.data,
+                        approval: (studentId || employee_id) ? approval.approval : undefined
+                    };
+                    return rowData;
+                });
+            
+                setRows(newData);
             } catch (error) {
                 console.log(error);
             }
-        };
-
+        }            ;
         fetchData();
     }, [id]);
     const formname = location.state.formname;  
