@@ -7,7 +7,7 @@ import { MDBDataTable } from 'mdbreact';
 import { GrTableAdd } from "react-icons/gr";
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { useParams } from 'react-router-dom'
+import { useParams, useLocation } from 'react-router-dom'
 
 
 const ProfileContent = ({student}) => {
@@ -111,7 +111,7 @@ const FormsContent = ({tabledata}) => {
 const StudentDashboard = () => {
 
     const navigate = useNavigate()
-
+    const location = useLocation();
     const {id} = useParams()
     const [student,setStudent] = React.useState({})
     console.log("kjhgvbhjklkjhg",id);
@@ -239,12 +239,14 @@ const StudentDashboard = () => {
                         </div> */}
                     </MenuItem>
                     <MenuItem icon = {<CgProfile />}  onClick={() => handleMenuItemClick('profile')} isActive={selectedMenuItem === 'profile'}>Profile</MenuItem>
+                    {!location.pathname.includes('principal') && (
+                            <>
                     <MenuItem icon = {<BsDatabaseCheck />} onClick={() => {
                         handleMenuItemClick('forms');
                         getforms();
                     }} 
                     isActive={selectedMenuItem === 'forms'}>Forms</MenuItem>
-                   
+                   </>)}
                    <MenuItem icon = {<BsDatabaseCheck />} onClick={() => {
                         handleMenuItemClick('forms'); 
                         viewforms();

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import NavbarComp from './NavbarComp';
-import { useParams } from 'react-router-dom';
+import { useParams,useLocation } from 'react-router-dom';
 import { MDBDataTable } from 'mdbreact';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
@@ -9,7 +9,8 @@ import { GrTableAdd } from 'react-icons/gr';
 const FormForApproval = () => {
     const navigate = useNavigate();
     const {role,dept} = useParams()
-
+    const location = useLocation(); // Use useLocation hook
+    const path = location.pathname;
     const [tabledata, setTabledata] = useState({
         columns: [
             {
@@ -31,15 +32,29 @@ const FormForApproval = () => {
     useEffect(() => {
         const fetchFormNames = async () => {
             try {
-                const response = await axios.post('http://localhost:8000/getformnamesappr', { role: role.toLowerCase() });
+                let response;
+                if (path.includes('principal')) {
+                    response = await axios.post('http://localhost:8000/getformnames', { role: role.toLowerCase() });
+                } else {
+                    response = await axios.post('http://localhost:8000/getformnamesappr', { role: role.toLowerCase() });
+                }
                 const forms = response.data;
                 let rows = [];
                 forms.forEach(form => {
                     rows.push({
                         icon: <GrTableAdd className='text-center scale-150 w-full' />,
                         fname: form.formname,
-                        action: <button onClick={() => navigate(`/${dept}/approvals/${form._id}`, { state: { formname: form.formname } })} className='bg-blue-500 text-white font-semibold rounded-md p-1'>Approve Data</button>
-                    });
+                        action: (
+                            <button onClick={() => {
+                                if (path.includes('principal')) {
+                                    navigate(`/formdata/${form._id}`, { state: { formname: form.formname , dept:dept} });
+                                } else {
+                                    navigate(`/${dept}/approvals/${form._id}`);
+                                }
+                            }} className='bg-blue-500 text-white font-semibold rounded-md p-1'>
+                                {path.includes('principal') ? 'View Data' : 'Approve Data'}
+                            </button>
+                        ) });
                 });
                 setTabledata({ ...tabledata, rows: rows });
             } catch (error) {
@@ -54,7 +69,7 @@ const FormForApproval = () => {
         <div className='h-screen bg-slate-100'>
             <NavbarComp />
             <div className='w-full flex justify-center items-center font-semibold text-3xl'>
-                <p>Forms for Approval</p>
+            <p>{path.includes('principal') ? `${dept.toUpperCase()} ${role} Data` : 'Forms for Approval'}</p>
             </div>
             <div className='w-full flex justify-center'>
                 <div className='md:w-[80%]'>

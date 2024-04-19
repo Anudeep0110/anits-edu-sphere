@@ -25,10 +25,10 @@ const FormData = () => {
             
                 const studentId = location.state.studentId;
                 const employee_id = location.state.employee_id;
-    
+                const dept = location.state.dept;
                 setColumns(newColumns);
             
-                const rowResponse = await axios.post('http://localhost:8000/getformdata', { id: id, studentId: studentId, employee_id: employee_id });
+                const rowResponse = await axios.post('http://localhost:8000/getformdata', { id: id, studentId: studentId, employee_id: employee_id,dept:dept });
                 const newData = rowResponse.data.map(approval => {
                     // If studentId or employee_id is present, include the approval status in the row data
                     const rowData = {

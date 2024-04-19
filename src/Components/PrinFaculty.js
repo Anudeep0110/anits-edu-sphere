@@ -27,7 +27,7 @@ const PrinStudents = () => {
                         name: faculty.first_name + ' ' + faculty.last_name,
                         employee_id: faculty.employee_id,
                         designation: faculty.designation,
-                        action: <button className='py-1 w-auto px-2 bg-blue-500 text-white rounded-md text-lg font-semibold border' onClick={() => navigate(`/faculty/${faculty.employee_id}`)}>View Profile</button>
+                        action: <button className='py-1 w-auto px-2 bg-blue-500 text-white rounded-md text-lg font-semibold border' onClick={() => navigate(`/principal/faculty/${faculty.employee_id}`)}>View Profile</button>
                     })
                 })
                 setStudents(slist)

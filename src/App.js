@@ -24,7 +24,7 @@ import FacultyDashboard from './Components/FacultyDashboard';
 import GlobalSearch from './Components/GlobalSearch';
 import ApprovalData from './Components/ApprovalsDashboard';
 import FormForApproval from './Components/FormForApproval';
-import Facultystudentapproval from './Components/DeptAppr';
+import DeptAppr from './Components/DeptAppr';
 import Admin from './Components/Admin';
 import ImportStudents from './Components/ImportStudents';
 import ImportFaculty from './Components/ImportFaculty';
@@ -66,7 +66,7 @@ function App() {
           <Route path='/department/:dept' element={<PrinDeptDashboard />}></Route>
           <Route path='/search' element={<GlobalSearch />}></Route>
           <Route path='/:dept/approvals/:id' element={<ApprovalData />}></Route>
-          <Route path='/:dept/dataauthentication' element={<Facultystudentapproval />}></Route>
+          <Route path='/:dept/dataauthentication' element={<DeptAppr />}></Route>
           <Route path='/:dept/formforapproval/:role' element={<FormForApproval />}></Route>
           <Route path='/admin' element={<Admin />}></Route>
           <Route path='/import/students' element={<ImportStudents />}></Route>
@@ -74,6 +74,10 @@ function App() {
           <Route path='/formbuilder' element={<FormBuilder />}></Route>
           <Route path='/createform' element={<CreateForm />}></Route>
           <Route path='/viewform/:id' element={<AdminViewForm />}></Route>
+          <Route path='/principal/faculty/:id' element={<FacultyDashboard />}></Route>
+          <Route path='/principal/student/:id' element={<StudentDashboard />}></Route>
+          <Route path='/principal/departmentinfo/:dept' element={<DeptAppr />}></Route>
+          <Route path='/principal/:dept/details/:role' element={<FormForApproval />}></Route>
         </Routes> 
       </BrowserRouter>
     </>
