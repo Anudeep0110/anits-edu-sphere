@@ -49,7 +49,7 @@ const FormForApproval = () => {
                                 if (path.includes('principal')) {
                                     navigate(`/formdata/${form._id}`, { state: { formname: form.formname , dept:dept} });
                                 } else {
-                                    navigate(`/${dept}/approvals/${form._id}`);
+                                    navigate(`/${dept}/approvals/${form._id}`,{ state: { formname: form.formname , dept:dept} });
                                 }
                             }} className='bg-blue-500 text-white font-semibold rounded-md p-1'>
                                 {path.includes('principal') ? 'View Data' : 'Approve Data'}
