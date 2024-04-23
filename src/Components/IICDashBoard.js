@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React from 'react'
 import NavbarComp from './NavbarComp'
 import { Sidebar,Menu,MenuItem } from 'react-pro-sidebar'
@@ -5,8 +6,9 @@ import { CgProfile } from "react-icons/cg";
 import { BsDatabaseCheck } from "react-icons/bs";
 import { MDBDataTable } from 'mdbreact';
 import { GrTableAdd } from "react-icons/gr";
-import { useNavigate, useParams,useLocation } from 'react-router-dom';
+import { useNavigate,useLocation } from 'react-router-dom';
 import axios from 'axios';
+import Loader from './Loader';
 
 const ProfileContent = () => {
 
@@ -121,10 +123,18 @@ const FormsContent = ({tabledata}) => {
 
 const IICDashBoard = () => {
     const location = useLocation();
+    
 
+    
     const path = location.pathname.split('/'); 
-
+    const [loading, setLoading] = React.useState(true);
+    
     const navigate = useNavigate()
+
+    React.useEffect(() => {
+        if(location.state?.role !== 'iic' && location.pathname.split('/').indexOf('principal') === -1) navigate('/')
+        else setLoading(false)
+    },[])
 
     const [selectedMenuItem, setSelectedMenuItem] = React.useState('profile');
 
@@ -152,6 +162,8 @@ const IICDashBoard = () => {
         ],
         rows: []
     });
+
+    if(loading) return <Loader />
 
       const getforms = async () => {
         axios.post('http://localhost:8000/getformnames',{role:'iic'})

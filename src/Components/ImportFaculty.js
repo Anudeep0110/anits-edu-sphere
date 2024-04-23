@@ -1,13 +1,26 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React from 'react'
 import NavbarComp from './NavbarComp'
 import { FaFileCsv } from "react-icons/fa6";
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate,useLocation } from 'react-router-dom';
+import Loader from './Loader';
 
 const ImportFaculty = () => {
-    const navigate = useNavigate();
+
+    const location = useLocation()
+  const [loading, setLoading] = React.useState(true);
+    
+  const navigate = useNavigate()
+
+  React.useEffect(() => {
+      if(location.state?.role !== 'admin') navigate('/')
+      else setLoading(false)
+  },[])
+
+  
     const [file,setFile] =React.useState();
     const formdata = new FormData();
     const [filename,setFname] = React.useState('Upload file')
@@ -71,7 +84,7 @@ const ImportFaculty = () => {
         })
     }
     
-
+    if(loading) return <Loader />
   return (
     <div className=' min-h-screen bg-slate-100'>
         <NavbarComp />

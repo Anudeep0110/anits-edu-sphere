@@ -7,7 +7,6 @@ import Sforgot from './StudentComponents/Sforgot';
 import Sreset from './StudentComponents/Sreset';
 import { Login } from './Components/Login';
 import FormComp from './Components/FormComp';
-import Dashboard from './Components/Dashboard';
 import Formbook from './FacultyComponents/Formbook';
 import Principal from './Components/Principal';
 import PrinDepartment from './Components/PrinDepartment';
@@ -31,18 +30,21 @@ import ImportFaculty from './Components/ImportFaculty';
 import CreateForm from './Components/CreateForm';
 import FormBuilder from './Components/FormBuilder';
 import AdminViewForm from './Components/AdminViewForm';
+import Loader from './Components/Loader';
 
 
 
 
 function App() {
+
+
   return (
     <>
     <AnimCursor/>
     <BrowserRouter>
         <Routes>
           <Route path='/' element={<HomeComp />}></Route>
-          <Route path='/dashboard' element={<Dashboard />}></Route>
+          <Route path='/dashboard' element={<Loader />}></Route>
           <Route path='/sforgot' element={<Sforgot />}></Route>
           <Route path='/sreset/:encryptedText' element={<Sreset />}></Route> 
           <Route path='/login' element={<Login />}></Route> 
@@ -74,8 +76,8 @@ function App() {
           <Route path='/formbuilder' element={<FormBuilder />}></Route>
           <Route path='/createform' element={<CreateForm />}></Route>
           <Route path='/viewform/:id' element={<AdminViewForm />}></Route>
-          <Route path='/principal/faculty/:id' element={<FacultyDashboard />}></Route>
-          <Route path='/principal/student/:id' element={<StudentDashboard />}></Route>
+          <Route path='/principal/view/faculty/:id' element={<FacultyDashboard />}></Route>
+          <Route path='/principal/view/student/:id' element={<StudentDashboard />}></Route>
           <Route path='/principal/departmentinfo/:dept' element={<DeptAppr />}></Route>
           <Route path='/principal/:dept/details/:role' element={<FormForApproval />}></Route>
         </Routes> 

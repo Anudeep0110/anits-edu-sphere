@@ -1,7 +1,5 @@
 import React from 'react'
 import NavbarComp from './NavbarComp'
-import { FcDepartment } from "react-icons/fc";
-import GlobalSearch from './GlobalSearch';
 
 const PrinDepartment = () => {
 

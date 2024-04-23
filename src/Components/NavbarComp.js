@@ -4,9 +4,12 @@ import Cookies from 'js-cookie'
 import { useNavigate } from 'react-router-dom'
 const NavbarComp = () => {
   const navigate = useNavigate()
+
+  
   const logout = () => {
+    if (Cookies.get('auth_token_key')) Cookies.remove('auth_token_key')
     Cookies.remove('token')
-    navigate('/')
+    navigate('/',{replace:true})
   }
 
   

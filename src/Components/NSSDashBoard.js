@@ -7,6 +7,7 @@ import { MDBDataTable } from 'mdbreact';
 import { GrTableAdd } from "react-icons/gr";
 import { useNavigate, useLocation } from 'react-router-dom';
 import axios from 'axios';
+import Loader from './Loader';
 
 const ProfileContent = () => {
 
@@ -124,8 +125,19 @@ const NSSDashBoard = () => {
     const location = useLocation();
 
     const path = location.pathname.split('/');  
+    const [loading, setLoading] = React.useState(true);
     
     const navigate = useNavigate()
+    console.log(location.pathname.split('/').indexOf('principal'));
+    console.log(location.state?.role);
+
+    React.useEffect(() => {
+        if (location.state?.role !== 'nss' && location.pathname.split('/').indexOf('principal') === -1) {
+            navigate('/');
+        } else {
+            setLoading(false);
+        }
+    }, [location.state, location.pathname, navigate]);
 
     const [selectedMenuItem, setSelectedMenuItem] = React.useState('profile');
 
@@ -154,6 +166,10 @@ const NSSDashBoard = () => {
         rows: []
     });
 
+    if (loading) {
+        return <Loader />;
+    }
+    
       const getforms = async () => {
         axios.post('http://localhost:8000/getformnames',{role:'NSS'})
         .then(response => {

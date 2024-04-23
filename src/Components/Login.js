@@ -29,7 +29,11 @@ export const Login = () => {
         else if(role === 'iic') Navigate('/iic',{state:{role:res.data.role,fname:res.data.fname}})
         else if(role === 'iqac') Navigate('/iqac',{state:{role:res.data.role,fname:res.data.fname}})
         else if(role === 'tnp') Navigate('/tnp',{state:{role:res.data.role,fname:res.data.fname}})
-        else if(role === 'admin') Navigate('/admin',{state:{role:res.data.role,fname:res.data.fname}})
+        else if(role === 'admin'){
+          var admin = CryptoJs.AES.encrypt('adminsettings','qa1!@dnwnnk#$^123').toString()
+          Cookies.set('auth_token_key',admin,{expires:1/24})
+          Navigate('/admin',{state:{role:res.data.role,fname:res.data.fname}})
+        }
       }else{
         setErr("*Invalid username or password")
       }

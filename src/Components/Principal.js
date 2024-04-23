@@ -1,15 +1,28 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React from 'react'
 import NavbarComp from './NavbarComp'
 import GlobalSearch from './GlobalSearch'
 import axios from 'axios'
-import { useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import { toast, ToastContainer } from 'react-toastify';
+import Loader from './Loader'
 
 
 
 const Principal = () => {
     const Navigate = useNavigate();
+    const location = useLocation();
 
+    const [loading, setLoading] = React.useState(true);
+    
+    const navigate = useNavigate()
+
+    React.useEffect(() => {
+        if(location.state?.role !== 'principal') navigate('/')
+        else setLoading(false)
+    },[])
+
+    if(loading) return <Loader />
 
     const cards = [
         {name:'Departments',redirect:'/principal/departments',icon:<img className='hover:drop-shadow-lg hover:scale-125' src='/assets/dept.webp' alt=''></img>},
@@ -20,11 +33,11 @@ const Principal = () => {
         // Perform your search logic here using the searchText
         axios.post('http://localhost:8000/verify_query',{searchText:searchText})
         .then((res) => {
-            if(res.data.role == 'student'){
+            if(res.data.role === 'student'){
                 Navigate(`/student/${searchText}`)
-            }else if(res.data.role == 'faculty'){
+            }else if(res.data.role === 'faculty'){
                 Navigate(`/faculty/${searchText}`)
-            }else if(res.data.role == 'no_role'){
+            }else if(res.data.role === 'no_role'){
                 toast.error('Invalid Data! Please Try Again Later!', {
                     position: "top-right",
                     autoClose: 3000,

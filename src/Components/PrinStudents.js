@@ -27,7 +27,7 @@ const PrinStudents = () => {
                         name: student.first_name + ' ' + student.last_name,
                         regno: student.regno,
                         yearofstudy: date.getFullYear() - student.from_year,
-                        action: <button className='py-1 w-auto px-2 bg-blue-500 text-white rounded-md text-lg font-semibold border' onClick={() => navigate(`/principal/student/${student.regno}`)}>View Profile</button>
+                        action: <button className='py-1 w-auto px-2 bg-blue-500 text-white rounded-md text-lg font-semibold border' onClick={() => navigate(`/principal/view/student/${student.regno}`)}>View Profile</button>
                     })
                 })
                 setStudents(slist)

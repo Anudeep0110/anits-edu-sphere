@@ -3,7 +3,8 @@ import React from 'react'
 import NavbarComp from './NavbarComp'
 import axios from 'axios';
 import { MDBDataTable } from 'mdbreact';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate,useLocation } from 'react-router-dom';
+import Loader from './Loader';
 
 const CreateForm = () => {
 
@@ -39,7 +40,16 @@ const CreateForm = () => {
         rows: []
       });
 
-      const navigate = useNavigate();
+      const location = useLocation()
+  const [loading, setLoading] = React.useState(true);
+    
+  const navigate = useNavigate()
+
+  React.useEffect(() => {
+      if(location.state?.role !== 'admin') navigate('/')
+      else setLoading(false)
+  },[])
+
     React.useEffect(() => {
         axios.get('http://localhost:8000/getforms')
         .then(response => {
@@ -59,13 +69,16 @@ const CreateForm = () => {
             console.log(err);
         })
     },[])
+
+  if(loading) return <Loader />
+
   return (
     <div className=' bg-slate-100 min-h-screen'>
         <NavbarComp />
         <div className='flex flex-col px-20 py-20'>
             <div className='flex justify-between px-12 py-16'>
                 <h1 className='text-4xl font-semibold'>Craft your Forms Here.</h1>
-                <button onClick={() => navigate('/createform')} className='px-10 py-1 rounded rouned-sm text-lg font-semibold bg-black text-white'>Create</button>
+                <button onClick={() => navigate('/createform',{state:{role:"admin"}})} className='px-10 py-1 rounded rouned-sm text-lg font-semibold bg-black text-white'>Create</button>
             </div>
             <Table data={tabledata} />
         </div>

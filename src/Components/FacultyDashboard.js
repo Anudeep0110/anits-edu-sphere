@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React from 'react'
 import NavbarComp from './NavbarComp'
 import { Sidebar,Menu,MenuItem } from 'react-pro-sidebar'
@@ -8,9 +9,21 @@ import { GrTableAdd } from "react-icons/gr";
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useParams , useLocation} from 'react-router-dom'
+import Loader from './Loader';
 
 
 const ProfileContent = ({faculty}) => {
+    const location = useLocation()
+    const navigate = useNavigate()
+    
+    const [loading, setLoading] = React.useState(true);
+    
+    React.useEffect(() => {
+        if(location.state?.role !== 'faculty' && location.pathname.split('/').indexOf('principal') === -1) navigate('/')
+        else setLoading(false)
+    },[])
+
+    if(loading) return <Loader />
 
 
     return(
@@ -51,7 +64,7 @@ const ProfileContent = ({faculty}) => {
                     </div>
                     <div className='flex flex-col'>
                         <p className='font-bold text-xl'>Department</p>
-                        <p className='font-semibold text-lg'>{new String(faculty.department).toLocaleUpperCase()}</p>
+                        <p className='font-semibold text-lg'>{String(faculty.department).toLocaleUpperCase()}</p>
                     </div>
                     <div className='flex flex-col'>
                         <p className='font-bold text-xl'>Designation</p>
@@ -149,7 +162,7 @@ const FacultyDashboard = () => {
         rows: []
     });
     const viewforms = async () => {
-        axios.post('http://localhost:8000/getformnames1',{role:'faculty',employee_id:id})
+        axios.post('http://localhost:8000/getformnames',{role:'faculty'})
         .then(response => {
         const forms = response.data;
         let rows = [];

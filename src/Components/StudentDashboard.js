@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React from 'react'
 import NavbarComp from './NavbarComp'
 import { Sidebar,Menu,MenuItem } from 'react-pro-sidebar'
@@ -8,6 +9,7 @@ import { GrTableAdd } from "react-icons/gr";
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useParams, useLocation } from 'react-router-dom'
+import Loader from './Loader';
 
 
 const ProfileContent = ({student}) => {
@@ -51,7 +53,7 @@ const ProfileContent = ({student}) => {
                     </div>
                     <div className='flex flex-col'>
                         <p className='font-bold text-xl'>Department</p>
-                        <p className='font-semibold text-lg'>{new String(student.department).toLocaleUpperCase()}</p>
+                        <p className='font-semibold text-lg'>{String(student.department).toLocaleUpperCase()}</p>
                     </div>
                     <div className='flex flex-col'>
                         <p className='font-bold text-xl'>Section</p>
@@ -112,8 +114,17 @@ const StudentDashboard = () => {
 
     const navigate = useNavigate()
     const location = useLocation();
+    
     const {id} = useParams()
     const [student,setStudent] = React.useState({})
+    const [loading, setLoading] = React.useState(true);
+
+    React.useEffect(() => {
+        if(location.state?.role !== 'student' && location.pathname.split('/').indexOf('principal') === -1) navigate('/')
+        else setLoading(false)
+    },[])
+
+
     console.log("kjhgvbhjklkjhg",id);
     React.useEffect(() => {
         axios.post('http://localhost:8000/getstudentdetails',{id:id})
@@ -148,6 +159,8 @@ const StudentDashboard = () => {
         ],
         rows: []
     });
+
+    if(loading) return <Loader />
     const viewforms = async () => {
         axios.post('http://localhost:8000/getformnames1',{role:'student',studentId:id})
         .then(response => {

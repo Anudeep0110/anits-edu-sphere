@@ -3,8 +3,21 @@ import React from 'react'
 import NavbarComp from './NavbarComp'
 import { FaPlus } from "react-icons/fa";
 import axios from 'axios'
+import { useLocation, useNavigate } from 'react-router-dom'
+import Loader from './Loader'
 
 const CreateForm = () => {
+
+    const location = useLocation()
+  const [loading, setLoading] = React.useState(true);
+    
+  const navigate = useNavigate()
+
+  React.useEffect(() => {
+      if(location.state?.role !== 'admin') navigate('/')
+      else setLoading(false)
+  },[])
+
     const [formname, setFormName] = React.useState('')
     const [role, setRole] = React.useState('')
     const [description, setDescription] = React.useState('')
@@ -56,7 +69,7 @@ const CreateForm = () => {
             iscustom:1
         })
     }
-  
+    if(loading) return <Loader />
 
 
   return (

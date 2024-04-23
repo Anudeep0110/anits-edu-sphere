@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React from 'react'
 import NavbarComp from './NavbarComp'
 import { Sidebar,Menu,MenuItem } from 'react-pro-sidebar'
@@ -7,6 +8,7 @@ import { MDBDataTable } from 'mdbreact';
 import { GrTableAdd } from "react-icons/gr";
 import { useNavigate, useLocation } from 'react-router-dom';
 import axios from 'axios';
+import Loader from './Loader';
 
 const ProfileContent = () => {
 
@@ -124,7 +126,17 @@ const TnpDashboard = () => {
 
     const path = location.pathname.split('/'); 
 
+    const [loading, setLoading] = React.useState(true);
+    
     const navigate = useNavigate()
+
+    React.useEffect(() => {
+        if(location.state?.role !== 'tnp' && location.pathname.split('/').indexOf('principal') === -1) navigate('/')
+        else setLoading(false)
+    },[])
+
+    console.log(location.pathname.split('/').indexOf('principal'));
+    console.log(location.state?.role);
 
     const [selectedMenuItem, setSelectedMenuItem] = React.useState('profile');
 
@@ -152,6 +164,8 @@ const TnpDashboard = () => {
         ],
         rows: []
     });
+
+    if(loading) return <Loader />
 
       const getforms = async () => {
         axios.post('http://localhost:8000/getformnames',{role:'tnp'})
