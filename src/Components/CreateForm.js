@@ -3,18 +3,17 @@ import React from 'react'
 import NavbarComp from './NavbarComp'
 import { FaPlus } from "react-icons/fa";
 import axios from 'axios'
-import { useLocation, useNavigate } from 'react-router-dom'
+import {  useNavigate } from 'react-router-dom'
 import Loader from './Loader'
 
 const CreateForm = () => {
 
-    const location = useLocation()
   const [loading, setLoading] = React.useState(true);
     
   const navigate = useNavigate()
 
   React.useEffect(() => {
-      if(location.state?.role !== 'admin') navigate('/')
+      if(atob(localStorage.getItem('role')) !== 'admin') navigate('/')
       else setLoading(false)
   },[])
 

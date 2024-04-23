@@ -129,10 +129,10 @@ const NSSDashBoard = () => {
     
     const navigate = useNavigate()
     console.log(location.pathname.split('/').indexOf('principal'));
-    console.log(location.state?.role);
+    console.log(atob(localStorage.getItem('role')));
 
     React.useEffect(() => {
-        if (location.state?.role !== 'nss' && location.pathname.split('/').indexOf('principal') === -1) {
+        if (atob(localStorage.getItem('role')) !== 'nss' && location.pathname.split('/').indexOf('principal') === -1) {
             navigate('/');
         } else {
             setLoading(false);

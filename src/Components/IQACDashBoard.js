@@ -132,7 +132,7 @@ const IQACDashBoard = () => {
     const navigate = useNavigate()
 
     React.useEffect(() => {
-        if(location.state?.role !== 'iqac' && location.pathname.split('/').indexOf('principal') === -1) navigate('/')
+        if(atob(localStorage.getItem('role')) !== 'iqac' && location.pathname.split('/').indexOf('principal') === -1) navigate('/')
         else setLoading(false)
     },[])
     

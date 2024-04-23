@@ -1,9 +1,12 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import axios from 'axios'
 import React from 'react'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import NavbarComp from './NavbarComp'
+import Loader from './Loader'
 
 const AdminViewForm = () => {
+    const navigate = useNavigate()
     const [formdata,setFormdata] = React.useState([])
     const [fname,setFname] = React.useState('')
     const {id} = useParams()
@@ -22,6 +25,13 @@ const AdminViewForm = () => {
     },[id])
     console.log(formdata);
     console.log(typeof formdata);
+    const [loading, setLoading] = React.useState(true);
+    React.useEffect(() => {
+        if(atob(localStorage.getItem('role')) !== 'admin') navigate('/')
+        else setLoading(false)
+    },[])
+  
+    if(loading) return <Loader />
   return (
     <div className='min-h-screen bg-slate-100 flex flex-col '>
         <NavbarComp/>

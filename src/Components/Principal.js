@@ -18,7 +18,7 @@ const Principal = () => {
     const navigate = useNavigate()
 
     React.useEffect(() => {
-        if(location.state?.role !== 'principal') navigate('/')
+        if(atob(localStorage.getItem('role')) !== 'principal') navigate('/')
         else setLoading(false)
     },[])
 
@@ -34,9 +34,9 @@ const Principal = () => {
         axios.post('http://localhost:8000/verify_query',{searchText:searchText})
         .then((res) => {
             if(res.data.role === 'student'){
-                Navigate(`/student/${searchText}`)
+                Navigate(`/principal/view/student/${searchText}`)
             }else if(res.data.role === 'faculty'){
-                Navigate(`/faculty/${searchText}`)
+                Navigate(`/principal/view/faculty/${searchText}`)
             }else if(res.data.role === 'no_role'){
                 toast.error('Invalid Data! Please Try Again Later!', {
                     position: "top-right",

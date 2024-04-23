@@ -1,17 +1,16 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, {Suspense} from 'react'
 import NavbarComp from './NavbarComp'
-import { useLocation, useNavigate } from 'react-router-dom'
+import {  useNavigate } from 'react-router-dom'
 import Loader from './Loader'
 
 const Admin = () => {
-  const location = useLocation()
   const [loading, setLoading] = React.useState(true);
     
   const navigate = useNavigate()
 
   React.useEffect(() => {
-      if(location.state?.role !== 'admin') navigate('/')
+      if(atob(localStorage.getItem('role')) !== 'admin') navigate('/')
       else setLoading(false)
   },[])
 

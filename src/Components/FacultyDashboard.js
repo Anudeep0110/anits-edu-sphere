@@ -19,7 +19,7 @@ const ProfileContent = ({faculty}) => {
     const [loading, setLoading] = React.useState(true);
     
     React.useEffect(() => {
-        if(location.state?.role !== 'faculty' && location.pathname.split('/').indexOf('principal') === -1) navigate('/')
+        if(atob(localStorage.getItem('role')) !== 'faculty' && location.pathname.split('/').indexOf('principal') === -1) navigate('/')
         else setLoading(false)
     },[])
 

@@ -131,12 +131,12 @@ const TnpDashboard = () => {
     const navigate = useNavigate()
 
     React.useEffect(() => {
-        if(location.state?.role !== 'tnp' && location.pathname.split('/').indexOf('principal') === -1) navigate('/')
+        if(atob(localStorage.getItem('role')) !== 'tnp' && location.pathname.split('/').indexOf('principal') === -1) navigate('/')
         else setLoading(false)
     },[])
 
     console.log(location.pathname.split('/').indexOf('principal'));
-    console.log(location.state?.role);
+    console.log(atob(localStorage.getItem('role')));
 
     const [selectedMenuItem, setSelectedMenuItem] = React.useState('profile');
 

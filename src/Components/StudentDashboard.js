@@ -120,7 +120,7 @@ const StudentDashboard = () => {
     const [loading, setLoading] = React.useState(true);
 
     React.useEffect(() => {
-        if(location.state?.role !== 'student' && location.pathname.split('/').indexOf('principal') === -1) navigate('/')
+        if(atob(localStorage.getItem('role')) !== 'student' && location.pathname.split('/').indexOf('principal') === -1) navigate('/')
         else setLoading(false)
     },[])
 

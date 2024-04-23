@@ -5,18 +5,17 @@ import { FaFileCsv } from "react-icons/fa6";
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
-import { useNavigate,useLocation } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Loader from './Loader';
 
 const ImportStudents = () => {
 
-    const location = useLocation()
   const [loading, setLoading] = React.useState(true);
     
   const navigate = useNavigate()
 
   React.useEffect(() => {
-      if(location.state?.role !== 'admin') navigate('/')
+      if(atob(localStorage.getItem('role')) !== 'admin') navigate('/')
       else setLoading(false)
   },[])
 

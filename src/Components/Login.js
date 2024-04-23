@@ -21,6 +21,7 @@ export const Login = () => {
         var cipher = CryptoJs.AES.encrypt(uname,'qa1!@dnwnnk#$^123').toString()
         Cookies.set('token',cipher,{expires:1})
         const role = res.data.role;
+        localStorage.setItem('role',btoa(role))
         if(role === 'principal') Navigate('/principal',{state:{role:res.data.role,fname:res.data.fname}})
         else if(role === 'department') Navigate(`/department/${res.data.dept}`,{state:{role:res.data.role,fname:res.data.fname,dept:res.data.dept}})
         else if(role === 'student') Navigate(`/student/${res.data.regno}`,{state:{role:res.data.role,fname:res.data.fname}})
