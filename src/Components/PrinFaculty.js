@@ -51,14 +51,14 @@ const PrinStudents = () => {
             width: 200
           },
           {
-            label: 'Roll Number',
-            field: 'regno',
+            label: 'Employee ID',
+            field: 'employee_id',
             sort: 'asc',
             width: 200
           },
           {
-            label: 'Year of Study',
-            field: 'yearofstudy',
+            label: 'Designation',
+            field: 'designation',
             sort: 'asc',
             width: 250,
             searchable: true
