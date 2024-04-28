@@ -132,7 +132,11 @@ const TnpDashboard = () => {
 
     React.useEffect(() => {
         if(atob(localStorage.getItem('role')) !== 'tnp' && location.pathname.split('/').indexOf('principal') === -1) navigate('/')
-        else setLoading(false)
+        else{
+            setTimeout(() => {
+                setLoading(false)
+        },2000)
+            }
     },[])
 
     console.log(location.pathname.split('/').indexOf('principal'));

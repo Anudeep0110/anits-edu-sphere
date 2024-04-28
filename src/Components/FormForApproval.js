@@ -5,6 +5,7 @@ import { MDBDataTable } from 'mdbreact';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { GrTableAdd } from 'react-icons/gr';
+import Loader from './Loader';
 
 const FormForApproval = () => {
     const navigate = useNavigate();
@@ -29,6 +30,9 @@ const FormForApproval = () => {
         rows: []
     });
 
+    const [loading, setLoading] = useState(true);
+
+
     useEffect(() => {
         const fetchFormNames = async () => {
             try {
@@ -38,6 +42,9 @@ const FormForApproval = () => {
                 } else {
                     response = await axios.post('http://localhost:8000/getformnamesappr', { role: role.toLowerCase() });
                 }
+                setTimeout(() => {
+                    setLoading(false)
+            },2000)
                 const forms = response.data;
                 let rows = [];
                 forms.forEach(form => {
@@ -64,6 +71,8 @@ const FormForApproval = () => {
 
         fetchFormNames();
     }, [navigate, tabledata]);
+
+    if(loading) return <Loader />
 
     return (
         <div className='h-screen bg-slate-100'>

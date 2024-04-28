@@ -10,6 +10,14 @@ const ApprovalData = () => {
 
     const [col, setColumns] = useState([]);
     const [data, setRows] = useState([]);
+    const [loading,setLoading] = React.useState(false);
+
+    React.useEffect(() => {
+        setTimeout(() => {
+        setLoading(true)
+        },2000)
+        return clearTimeout()
+    },[])
 
     // Define the fetchData function
     const fetchData = async () => {
@@ -24,6 +32,9 @@ const ApprovalData = () => {
             setColumns(newColumns);
 
             const approvalResponse = await axios.post('http://localhost:8000/getapprovals', { formid: id ,dept:dept});
+            setTimeout(() => {
+                setLoading(false)
+            },2000)
             const newData = approvalResponse.data.map(approval => ({
                 ...approval.data, 
                 action: (

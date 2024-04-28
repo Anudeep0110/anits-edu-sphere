@@ -11,7 +11,11 @@ const Admin = () => {
 
   React.useEffect(() => {
       if(atob(localStorage.getItem('role')) !== 'admin') navigate('/')
-      else setLoading(false)
+      else{
+          setTimeout(() => {
+                  setLoading(false)
+          },2000)
+      }
   },[])
 
   if(loading) return <Loader />

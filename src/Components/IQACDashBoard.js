@@ -180,6 +180,9 @@ const IQACDashBoard = () => {
         })
         setTabledata({...tabledata, rows: rows}); 
         console.log(tabledata);
+        setTimeout(() => {
+            setLoading(false)
+    },2000)
       })
     }
 

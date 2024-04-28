@@ -3,19 +3,24 @@ import NavbarComp from './NavbarComp'
 import { FcDepartment } from "react-icons/fc";
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
+import Loader from './Loader'
 
 
 const Tnp = () => {
     const [forms,setForms] = React.useState([])
+    const [loading, setLoading] = React.useState(true);
 const navigate = useNavigate();
     React.useEffect(() => {
         axios.post('http://localhost:8000/getforms',{role:'tnp'})
         .then(res => {
             setForms(res.data)
         })
+        setTimeout(() => {
+          setLoading(false)
+  },2000)
     },[])
    
- 
+ if(loading) return <Loader />
     return (
         <div className="bg-slate-100">
           <NavbarComp />

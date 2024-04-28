@@ -16,7 +16,11 @@ const ImportFaculty = () => {
 
   React.useEffect(() => {
       if(atob(localStorage.getItem('role')) !== 'admin') navigate('/')
-      else setLoading(false)
+      else{
+        setTimeout(() => {
+            setLoading(false)
+    },2000)
+    }
   },[])
 
   
@@ -98,7 +102,7 @@ const ImportFaculty = () => {
             <h3 className='text-2xl'>Are you first time here ?</h3>
             <div className='flex gap-3 py-2 justify-center items-center'>
                 <FaFileCsv className='text-3xl text-blue-600'/>
-                <a href='/assets/students_template.xlsx' download>
+                <a href='/assets/faculty_template.xlsx' download>
                     <h4  className='text-2xl text-blue-600'>Faculty Data Template</h4>
                 </a>
             </div>

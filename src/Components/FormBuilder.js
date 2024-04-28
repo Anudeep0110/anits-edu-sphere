@@ -63,6 +63,9 @@ const CreateForm = () => {
                 })
             })
             setTabledata({...tabledata, rows: rows});
+            setTimeout(() => {
+              setLoading(false)
+            },2000)
         })
         .catch(err => {
             console.log(err);

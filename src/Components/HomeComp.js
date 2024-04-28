@@ -2,17 +2,28 @@ import React from 'react';
 import NavbarComp from './NavbarComp'
 import { useNavigate } from 'react-router-dom'
 import Cookies from 'js-cookie'
+import Loader from './Loader';
 
 function AdventureSection() {
   const Navigate = useNavigate();
+
+  const [loading, setLoading] = React.useState(true);
+
+  React.useEffect(() => {
+    setTimeout(() => {
+      setLoading(false)
+    }, 2000)
+  }, [])
 
   const logout = () => {
     if (Cookies.get('auth_token_key')) Cookies.remove('auth_token_key')
     Cookies.remove('token')
     Navigate('/')
+    localStorage.removeItem('loginURL')
   }
 
   return (
+    <>{loading ? <Loader /> :
     <div>
       <NavbarComp />
       <section class="text-gray-600 body-font bg-slate-100">
@@ -31,7 +42,8 @@ function AdventureSection() {
           </div>
         </div> 
       </section>
-    </div>
+    </div>}
+    </>
   );
 }
 

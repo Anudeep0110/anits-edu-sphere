@@ -3,7 +3,7 @@ import React from 'react'
 import NavbarComp from './NavbarComp'
 import GlobalSearch from './GlobalSearch'
 import axios from 'axios'
-import { useLocation, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { toast, ToastContainer } from 'react-toastify';
 import Loader from './Loader'
 
@@ -11,15 +11,16 @@ import Loader from './Loader'
 
 const Principal = () => {
     const Navigate = useNavigate();
-    const location = useLocation();
-
     const [loading, setLoading] = React.useState(true);
-    
     const navigate = useNavigate()
 
     React.useEffect(() => {
         if(atob(localStorage.getItem('role')) !== 'principal') navigate('/')
-        else setLoading(false)
+        else {
+            setTimeout(() => {
+                setLoading(false)
+        },2000)
+        }
     },[])
 
     if(loading) return <Loader />
@@ -28,6 +29,8 @@ const Principal = () => {
         {name:'Departments',redirect:'/principal/departments',icon:<img className='hover:drop-shadow-lg hover:scale-125' src='/assets/dept.webp' alt=''></img>},
         {name:'NSS',redirect:'/principal/nss',icon:<img className='hover:drop-shadow-lg hover:scale-125' src='/assets/nss.png' alt=''></img>},
         {name:'IQAC',redirect:'/principal/iqac',icon:<img className='hover:drop-shadow-lg hover:scale-125' src='/assets/iqac.png' alt=''></img>},
+        {namr:'IIC',redirect:'/principal/iic',icon:<img className='hover:drop-shadow-lg hover:scale-125' src='/assets/iic.png' alt=''></img>},
+        {name:'TNP',redirect:'/principal/tnp',icon:<img className='hover:drop-shadow-lg hover:scale-125' src='/assets/tnp.png' alt=''></img>},
     ]
     const handleSearch = (searchText) => {
         // Perform your search logic here using the searchText

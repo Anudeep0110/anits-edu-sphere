@@ -9,6 +9,7 @@ const AdminViewForm = () => {
     const navigate = useNavigate()
     const [formdata,setFormdata] = React.useState([])
     const [fname,setFname] = React.useState('')
+
     const {id} = useParams()
     React.useEffect(() => {
         axios.post('http://localhost:8000/formapi/getformdata',{
@@ -18,6 +19,9 @@ const AdminViewForm = () => {
             console.log(res.data);
             setFname(res.data.formname) 
             setFormdata(res.data.columns)
+            setTimeout(() => {
+                setLoading(false)
+        },2000)
         })
         .catch(err => {
             console.log(err)
@@ -28,7 +32,6 @@ const AdminViewForm = () => {
     const [loading, setLoading] = React.useState(true);
     React.useEffect(() => {
         if(atob(localStorage.getItem('role')) !== 'admin') navigate('/')
-        else setLoading(false)
     },[])
   
     if(loading) return <Loader />

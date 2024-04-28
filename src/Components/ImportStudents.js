@@ -16,7 +16,11 @@ const ImportStudents = () => {
 
   React.useEffect(() => {
       if(atob(localStorage.getItem('role')) !== 'admin') navigate('/')
-      else setLoading(false)
+      else {
+        setTimeout(() => {
+            setLoading(false)
+    },2000)
+    }
   },[])
 
     const [file,setFile] =React.useState();

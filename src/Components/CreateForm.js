@@ -14,7 +14,11 @@ const CreateForm = () => {
 
   React.useEffect(() => {
       if(atob(localStorage.getItem('role')) !== 'admin') navigate('/')
-      else setLoading(false)
+      else {
+            setTimeout(() => {
+                setLoading(false)
+            },2000)
+        }
   },[])
 
     const [formname, setFormName] = React.useState('')
@@ -116,7 +120,7 @@ const CreateForm = () => {
                                 </select>
                             </div>
                             <div className='flex gap-3'>
-                            <input type='text' onChange={(e) => handleplaceholder(e,ncols) } placeholder='NAME OF THE COLUMN' className="bg-gray-50 border border-gray-300 text-gray-900 text-md rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-75 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"></input>
+                            <input type='text' onChange={(e) => handleplaceholder(e,ncols) } placeholder='Instruction to the User' className="bg-gray-50 border border-gray-300 text-gray-900 text-md rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-75 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"></input>
                             <button onClick={() => deleteColumn(parseInt(col.id))} className="mb-2 w-25 items-center text-lg font-medium bg-slate-900 flex text-white p-2.5 py-1 rounded dark:text-white uppercase">Delete Column</button>
                             </div>
                         </div>

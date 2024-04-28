@@ -1,13 +1,16 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { useNavigate, useParams, useLocation } from 'react-router-dom';
 import NavbarComp from './NavbarComp';
 import axios from 'axios';
 import { MDBDataTable } from 'mdbreact';
 import { GrTableAdd } from "react-icons/gr";
+import Loader from './Loader';
 
 const PrinDeptDashboard = () => {
   const location = useLocation();
+  const ref = useRef();
   const path = location.pathname.split('/');
+  const [loading, setLoading] = React.useState(true);
   const [tabledata, setTabledata] = React.useState({
     columns: [
       {
@@ -49,6 +52,11 @@ const PrinDeptDashboard = () => {
           })
         })
         setTabledata({ ...tabledata, rows: rows });
+        setTimeout(() => {
+          setLoading(false)
+  },2000)
+  ref.current.scrollIntoView({ behavior: 'smooth' });
+
       })
       .catch(err => {
         console.log(err);
@@ -68,6 +76,11 @@ const PrinDeptDashboard = () => {
           })
         })
         setTabledata({ ...tabledata, rows: rows });
+        setTimeout(() => {
+          setLoading(false)
+      },2000)
+      ref.current.scrollIntoView({ behavior: 'smooth' });
+
       })
       .catch(err => {
         console.log(err);
@@ -83,6 +96,7 @@ const PrinDeptDashboard = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  if(loading) <Loader />
   return (
     <div className='min-h-screen flex flex-col'>
       <NavbarComp />
@@ -91,7 +105,7 @@ const PrinDeptDashboard = () => {
           Welcome to <span className='text-4xl font-bold'>{dept.toLocaleUpperCase()}</span> Department Dashboard
         </div>
         <div className='md:w-[85%] w-[99%] md:p-12 p-3 gap-x-4 gap-y-5 flex flex-wrap justify-center sm:justify-start '>
-        {path.includes('principal') ? null : (
+        {path.indexOf('principal') !== -1 ? null : (
             <div onClick={() => navigate(`/${dept}/dataauthentication`)} className='flex flex-col justify-center hover:drop-shadow-2xl hover:scale-110 hover:font-bold items-center'>
               <div className='md:w-[200px] md:h-[200px] w-[150px]  h-[150px] rounded-md'>
                 <img src='/assets/task.png' className=' mix-blend-multiply' alt='Student'></img>
@@ -100,12 +114,21 @@ const PrinDeptDashboard = () => {
             </div>
           )}
 
-<div onClick={() => navigate(`/principal/departmentinfo/${dept}`)} className='flex flex-col justify-center hover:drop-shadow-2xl hover:scale-110 hover:font-bold items-center'>
-  <div className='md:w-[200px] md:h-[200px] w-[150px]  h-[150px] rounded-md'>
-    <img src='/assets/viewdata.png' className=' mix-blend-multiply' alt='Student'></img>
-  </div>
-  <p className='p-1 text-2xl font-semibold'>View Data</p>
-</div>
+          {path.indexOf('principal') !== -1 ? null : (
+            <div onClick={fillforms} className='flex flex-col justify-center hover:drop-shadow-2xl hover:scale-110 hover:font-bold items-center'>
+            <div className='md:w-[200px] md:h-[200px] w-[150px]  h-[150px] rounded-md'>
+              <img src='/assets/fillforms.png' className=' mix-blend-multiply' alt='Student'></img>
+            </div>
+            <p className='p-1 text-2xl font-semibold'>Fill Forms</p>
+          </div>
+          )}
+
+        <div onClick={viewData} className='flex flex-col justify-center hover:drop-shadow-2xl hover:scale-110 hover:font-bold items-center'>
+          <div className='md:w-[200px] md:h-[200px] w-[150px]  h-[150px] rounded-md'>
+            <img src='/assets/viewdata.png' className=' mix-blend-multiply' alt='Student'></img>
+          </div>
+          <p className='p-1 text-2xl font-semibold'>View Data</p>
+        </div>
           
 <div onClick={() => navigate(`/principal/departments/${dept}/students`)} className='flex flex-col justify-center hover:drop-shadow-2xl hover:scale-110 hover:font-bold items-center'>
   <div className='md:w-[200px] md:h-[200px] w-[150px]  h-[150px] rounded-md'>
@@ -153,7 +176,7 @@ const PrinDeptDashboard = () => {
           <div className='p-5 flex justify-start items-center'>
             <p className='font-semibold text-3xl uppercase'>Department Data</p>
           </div>
-          <div className='md:p-12 p-3 gap-x-20 gap-y-10 flex flex-wrap justify-center'>
+          <div className='md:p-12 p-3 gap-x-20 gap-y-10 flex flex-wrap justify-center' ref={ref} id='table'>
             <div className='md:w-[80%] font-semibold'>
               <MDBDataTable
                 hover

@@ -3,15 +3,43 @@ import axios from 'axios'
 import Cookies from 'js-cookie'
 import CryptoJs from 'crypto-js'
 import { useNavigate } from 'react-router-dom'
+import Loader from './Loader'
 export const Login = () => {
   const Navigate = useNavigate();
 
   const [uname,setUname] = React.useState('');
   const [pwd,setPwd] = React.useState('');
   const [err,setErr] = React.useState('');
+  const [loading,setLoading] = React.useState(false);
+
+  React.useEffect(() => {
+    setTimeout(() => {
+      setLoading(true)
+    },2000)
+    return clearTimeout()
+  },[])
 
   const isLabelHidden = uname.trim() !== '';
   const isLabelHid = pwd.trim() !== '';
+
+  React.useEffect(() => {
+    if(Cookies.get('token')){
+      const role = atob(localStorage.getItem('role'))
+      const dept = atob(localStorage.getItem('dept'))
+      const regno = atob(localStorage.getItem('regno'))
+      if(role === 'principal') Navigate('/principal')
+        else if(role === 'department') Navigate(`/department/${dept}`)
+        else if(role === 'student') Navigate(`/student/${regno}`)
+        else if(role === 'faculty') Navigate(`/faculty/${regno}`)
+        else if(role === 'nss') Navigate('/nss')
+        else if(role === 'iic') Navigate('/iic')
+        else if(role === 'iqac') Navigate('/iqac')
+        else if(role === 'tnp') Navigate('/tnp')
+        else if(role === 'admin'){
+          Navigate('/admin',{state:{role:role}})
+        }
+    }
+  })
 
   const Submit = (e) => {
     e.preventDefault();
@@ -22,18 +50,48 @@ export const Login = () => {
         Cookies.set('token',cipher,{expires:1})
         const role = res.data.role;
         localStorage.setItem('role',btoa(role))
-        if(role === 'principal') Navigate('/principal',{state:{role:res.data.role,fname:res.data.fname}})
-        else if(role === 'department') Navigate(`/department/${res.data.dept}`,{state:{role:res.data.role,fname:res.data.fname,dept:res.data.dept}})
-        else if(role === 'student') Navigate(`/student/${res.data.regno}`,{state:{role:res.data.role,fname:res.data.fname}})
-        else if(role === 'faculty') Navigate(`/faculty/${res.data.regno}`,{state:{role:res.data.role,fname:res.data.fname,dept:res.data.dept}})
-        else if(role === 'nss') Navigate('/nss',{state:{role:res.data.role,fname:res.data.fname}})
-        else if(role === 'iic') Navigate('/iic',{state:{role:res.data.role,fname:res.data.fname}})
-        else if(role === 'iqac') Navigate('/iqac',{state:{role:res.data.role,fname:res.data.fname}})
-        else if(role === 'tnp') Navigate('/tnp',{state:{role:res.data.role,fname:res.data.fname}})
+        if(role === 'principal'){
+           Navigate('/principal')
+           localStorage.setItem('loginURL',btoa('/principal'))
+        }
+        else if(role === 'department'){
+           Navigate(`/department/${res.data.dept}`)
+           localStorage.setItem('dept',btoa(res.data.dept))
+           localStorage.setItem('loginURL',btoa(`/department/${res.data.dept}`))
+        }
+        else if(role === 'student'){
+          Navigate(`/student/${res.data.regno}`)
+          localStorage.setItem('regno',btoa(res.data.regno))
+          localStorage.setItem('dept',btoa(res.data.dept))
+          localStorage.setItem('loginURL',btoa(`/student/${res.data.regno}`))
+        }
+        else if(role === 'faculty'){
+          Navigate(`/faculty/${res.data.regno}`)
+          localStorage.setItem('regno',btoa(res.data.regno))
+          localStorage.setItem('dept',btoa(res.data.dept))
+          localStorage.setItem('loginURL',btoa(`/faculty/${res.data.regno}`))
+        } 
+        else if(role === 'nss'){
+           Navigate('/nss')
+            localStorage.setItem('loginURL',btoa('/nss'))
+        }
+        else if(role === 'iic'){
+           Navigate('/iic')
+            localStorage.setItem('loginURL',btoa('/iic'))
+        }
+        else if(role === 'iqac'){
+          Navigate('/iqac')
+          localStorage.setItem('loginURL',btoa('/iqac'))
+        }
+        else if(role === 'tnp'){
+           Navigate('/tnp')
+            localStorage.setItem('loginURL',btoa('/tnp'))
+        }
         else if(role === 'admin'){
           var admin = CryptoJs.AES.encrypt('adminsettings','qa1!@dnwnnk#$^123').toString()
           Cookies.set('auth_token_key',admin,{expires:1/24})
-          Navigate('/admin',{state:{role:res.data.role,fname:res.data.fname}})
+          Navigate('/admin')
+          localStorage.setItem('loginURL',btoa('/admin'))
         }
       }else{
         setErr("*Invalid username or password")
@@ -46,6 +104,7 @@ export const Login = () => {
 
 return (
     <>
+    {loading ?
     <section className="gradient-form h-full lg:h-screen bg-slate-100 ">
       <div className="container h-full p-10">
         <div className="g-6 flex h-full flex-wrap items-center justify-center text-neutral-800 ">
@@ -153,6 +212,6 @@ return (
         </div>
       </div>
     </section>
-    
+    :<Loader />}
     </>
 )}

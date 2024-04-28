@@ -1,7 +1,7 @@
 import React from 'react'
 import Input from './Input'
 import Formdescript from './Formdescript'
-import { useLocation } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import { toast, ToastContainer } from 'react-toastify';
 import Loader from './Loader'
 import axios from 'axios'
@@ -11,9 +11,11 @@ const FormComp = () => {
 
     const location = useLocation();
     const [form,setForm] = React.useState({})
-    const [isloading,setIsloading] = React.useState(true);
     const [formdata,setFormdata] = React.useState({})
     const [status,setStatus] = React.useState(false)
+    const [loading,setLoading] = React.useState(true);
+
+    const navigate = useNavigate();
 
     const handleChange = (e) => {
         e.preventDefault();
@@ -23,24 +25,25 @@ const FormComp = () => {
         axios.post('http://localhost:8000/getform',{id:location.state.id})
         .then(res => {
             setForm(res.data) 
-            setIsloading(false);
+            setTimeout(() => {
+                setLoading(false)
+        },2000)
         })
     },[location.state.id])
 
     const submitted = async (e) => {
         e.preventDefault();
         let additionalFields = {};
-        if (location.state.role === 'student' ) {
+        if (atob(localStorage.getItem('role')) === 'student' ) {
             try {
                 const response = await axios.post('http://localhost:8000/getAdditionalFields', { studentId: location.state.studentId});
                 additionalFields = response.data;
-                console.log(additionalFields)
             } catch (error) {
                 console.error('Error fetching additional fields:', error);
                 return;
             }
         }
-        else if (location.state.role === 'faculty' ) {
+        else if (atob(localStorage.getItem('role')) === 'faculty' ) {
             try {
                 const response = await axios.post('http://localhost:8000/getAdditionalFields', { employee_id: location.state.employee_id});
                 additionalFields = response.data;
@@ -62,12 +65,14 @@ const FormComp = () => {
             formid: location.state.id,
             data: formDataWithAdditionalFields,
         };
+
+        if(localStorage.getItem('role') === 'student' || localStorage.getItem('role') === 'faculty'){
     
         await axios.post('http://localhost:8000/sendtoapprovals', formDataWithId)
         .then(res => {
-            console.log(res.data);
+            console.log("reponse",res.data);
             setStatus(true);    
-            toast.success('Data Saved successfully!', {
+            toast.success('Data Send to Approvals successfully!', {
                 position: "top-right",
                 autoClose: 3000,
                 hideProgressBar: false,
@@ -77,6 +82,10 @@ const FormComp = () => {
                 progress: undefined,
                 theme: "light",
             });
+            setTimeout(() => {
+                const role = atob(localStorage.getItem('role'));
+                navigate(`/${role}/${location.state.studentId}`)
+            },3000)
         })
         .catch(err => {
             console.log(err);
@@ -91,7 +100,48 @@ const FormComp = () => {
                 progress: undefined,
                 theme: "light",
             });
+            setTimeout(() => {
+                const role = atob(localStorage.getItem('role'));
+                navigate(`/${role}/${location.state.id}`)
+            },3000)
         });
+    }else{
+        await axios.post('http://localhost:8000/sendtodb', formDataWithId)
+        .then(res => {
+            console.log("reponse",res.data);
+            setStatus(true);    
+            toast.success('Data Saved successfully!', {
+                position: "top-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
+            setTimeout(() => {
+                navigate(atob(localStorage.getItem('loginURL')))
+            },3000)
+        })
+        .catch(err => {
+            console.log(err);
+            setStatus(false);
+            toast.error('Data not saved! Please Try Again Later!', {
+                position: "top-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
+            setTimeout(() => {
+                navigate(atob(localStorage.getItem('loginURL')))
+            },3000)
+        });
+    }
     }
     
     
@@ -99,7 +149,7 @@ const FormComp = () => {
 
 return (
 <>  
-{isloading ? <Loader/> : 
+{loading ? <Loader/> : 
 <div className='h-screen'> 
     <ToastContainer/>   
     <div className='absolute top-0 left-0 flex w-100 flex-col overflow-y-scroll lg:flex-row'>

@@ -4,6 +4,7 @@ import NavbarComp from './NavbarComp';
 import { MDBDataTable } from 'mdbreact';
 import axios from 'axios';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
+import Loader from './Loader';
 
 
 const PrinStudents = () => {
@@ -13,6 +14,9 @@ const PrinStudents = () => {
     const location = useLocation();
     const navigate = useNavigate()
     const {dept} = useParams()
+
+    const [loading, setLoading] = React.useState(true)
+
 
 
     const [students, setStudents] = React.useState([])
@@ -31,6 +35,9 @@ const PrinStudents = () => {
                     })
                 })
                 setStudents(slist)
+                setTimeout(() => {
+                  setLoading(false)
+          },2000)
 
             });
     },[dept, navigate])
@@ -68,6 +75,7 @@ const PrinStudents = () => {
 
     const path = location.pathname.split('/');
     const role = path[path.length - 1].charAt(0).toUpperCase() + path[path.length - 1].slice(1);
+    if(loading) <Loader />
   return (
     <div className='h-screen bg-slate-100'>
       <NavbarComp />

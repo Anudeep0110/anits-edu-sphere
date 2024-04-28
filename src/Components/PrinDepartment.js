@@ -1,7 +1,16 @@
 import React from 'react'
 import NavbarComp from './NavbarComp'
+import Loader from './Loader';
 
 const PrinDepartment = () => {
+
+    const [loading, setLoading] = React.useState(true);
+
+    React.useEffect(() => {
+        setTimeout(() => {
+            setLoading(false)
+        },2000)
+    },[])
 
     const cards = [
         {name:'CSMD',redirect:'/principal/departments/csmd',icon:<img className='hover:drop-shadow-lg hover:scale-125' src='/assets/dept.webp' alt=''></img>},
@@ -14,6 +23,7 @@ const PrinDepartment = () => {
     ]
 
   return (
+    <>{loading ? <Loader />:
     <div className='min-h-screen w-full bg-slate-100'>
         <NavbarComp />
         {/* <GlobalSearch /> */}
@@ -30,7 +40,8 @@ const PrinDepartment = () => {
                 )}           
             </div>
         </div>
-    </div>
+    </div>}
+    </>
   )
 }
 
