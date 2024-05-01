@@ -10,7 +10,8 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import axios from 'axios';
 import Loader from './Loader';
 
-const ProfileContent = () => {
+{/*
+    const ProfileContent = () => {
 
     const fname = 'Internal Quality Assurance Cell'
 
@@ -98,6 +99,7 @@ const ProfileContent = () => {
         </>
     )
 }
+*/}
 
 const FormsContent = ({tabledata}) => {
     console.log(tabledata)
@@ -137,7 +139,7 @@ const IQACDashBoard = () => {
     },[])
     
 
-    const [selectedMenuItem, setSelectedMenuItem] = React.useState('profile');
+    const [selectedMenuItem, setSelectedMenuItem] = React.useState('forms');
 
     const [tabledata, setTabledata] = React.useState({
         columns: [
@@ -210,23 +212,32 @@ const IQACDashBoard = () => {
   };
 
     const renderContent = () => {
-        switch (selectedMenuItem) {
-            case 'profile':
-                return (
-                    <div className='flex py-10 '>
-                        <ProfileContent />
-                    </div>  
-                )
-            case 'forms':
-                return( 
-                    <div className='flex justify-center py-20'>
-                        <FormsContent tabledata={tabledata}/>
-                    </div>
-                )
-            // Add cases for other menu items as needed
-            default:
-                return null;
-        }
+        {/*
+            switch (selectedMenuItem) {
+                case 'profile':
+                    return (
+                        <div className='flex py-10 '>
+                            <ProfileContent />
+                        </div>  
+                    )
+                case 'forms':
+                    return( 
+                        <div className='flex justify-center py-20'>
+                            <FormsContent tabledata={tabledata}/>
+                        </div>
+                    )
+                // Add cases for other menu items as needed
+                default:
+                    return null;
+            }
+        */}
+        
+
+        return( 
+            <div className='flex justify-center py-20'>
+                <FormsContent tabledata={tabledata}/>
+            </div>
+        )
     };
 
   return (
@@ -251,7 +262,7 @@ const IQACDashBoard = () => {
                         <div className='h-[200px] flex justify-center items-center'>
                             <div className='w-[100px] h-[100px] '>
                                 <img alt='Profile' src='/assets/profile.png'></img>
-                                <p className='flex justify-center text-blue-950'>Anudeep Gude</p>
+                                <p className='flex justify-center text-blue-950'>IQAC</p>
                             </div>
                         </div>
 
@@ -260,7 +271,7 @@ const IQACDashBoard = () => {
                             </div>
                         </div> */}
                     </MenuItem>
-                    <MenuItem icon = {<CgProfile />}  onClick={() => handleMenuItemClick('profile')} isActive={selectedMenuItem === 'profile'}>Profile</MenuItem>
+                    {/*<MenuItem icon = {<CgProfile />}  onClick={() => handleMenuItemClick('profile')} isActive={selectedMenuItem === 'profile'}>Profile</MenuItem>*/}
 
                     {path.indexOf('principal') === -1 ?
             <div>
