@@ -10,7 +10,7 @@ import { useNavigate,useLocation } from 'react-router-dom';
 import axios from 'axios';
 import Loader from './Loader';
 
-const ProfileContent = () => {
+{/*const ProfileContent = () => {
 
     const fname = "Instiution's Innovation Council'"
 
@@ -97,7 +97,7 @@ const ProfileContent = () => {
         </div>
         </>
     )
-}
+}*/}
 
 const FormsContent = ({tabledata}) => {
     console.log(tabledata)
@@ -136,7 +136,7 @@ const IICDashBoard = () => {
         else setLoading(false)
     },[])
 
-    const [selectedMenuItem, setSelectedMenuItem] = React.useState('profile');
+    const [selectedMenuItem, setSelectedMenuItem] = React.useState('forms');
 
     const [tabledata, setTabledata] = React.useState({
         columns: [
@@ -210,7 +210,7 @@ const IICDashBoard = () => {
   };
 
     const renderContent = () => {
-        switch (selectedMenuItem) {
+        {/*switch (selectedMenuItem) {
             case 'profile':
                 return (
                     <div className='flex py-10 '>
@@ -226,7 +226,13 @@ const IICDashBoard = () => {
             // Add cases for other menu items as needed
             default:
                 return null;
-        }
+        }*/}
+
+        return( 
+            <div className='flex justify-center py-20'>
+                <FormsContent tabledata={tabledata}/>
+            </div>
+        )
     };
 
   return (
@@ -260,7 +266,7 @@ const IICDashBoard = () => {
                             </div>
                         </div> */}
                     </MenuItem>
-                    <MenuItem icon = {<CgProfile />}  onClick={() => handleMenuItemClick('profile')} isActive={selectedMenuItem === 'profile'}>Profile</MenuItem>
+                    {/*<MenuItem icon = {<CgProfile />}  onClick={() => handleMenuItemClick('profile')} isActive={selectedMenuItem === 'profile'}>Profile</MenuItem>*/}
 
 
                     {path.indexOf('principal') === -1 ?

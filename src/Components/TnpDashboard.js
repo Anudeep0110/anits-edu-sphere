@@ -10,7 +10,8 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import axios from 'axios';
 import Loader from './Loader';
 
-const ProfileContent = () => {
+{/*
+    const ProfileContent = () => {
 
     const fname = 'Training and Placement Cell'
 
@@ -98,6 +99,7 @@ const ProfileContent = () => {
         </>
     )
 }
+*/}
 
 const FormsContent = ({tabledata}) => {
     console.log(tabledata)
@@ -142,7 +144,7 @@ const TnpDashboard = () => {
     console.log(location.pathname.split('/').indexOf('principal'));
     console.log(atob(localStorage.getItem('role')));
 
-    const [selectedMenuItem, setSelectedMenuItem] = React.useState('profile');
+    const [selectedMenuItem, setSelectedMenuItem] = React.useState('forms');
 
     const [tabledata, setTabledata] = React.useState({
         columns: [
@@ -213,7 +215,8 @@ const TnpDashboard = () => {
   };
 
     const renderContent = () => {
-        switch (selectedMenuItem) {
+        {/*
+                switch (selectedMenuItem) {
             case 'profile':
                 return (
                     <div className='flex py-10 '>
@@ -230,6 +233,12 @@ const TnpDashboard = () => {
             default:
                 return null;
         }
+        */}
+        return( 
+            <div className='flex justify-center py-20'>
+                <FormsContent tabledata={tabledata}/>
+            </div>
+        )
     };
 
   return (
@@ -254,7 +263,7 @@ const TnpDashboard = () => {
                         <div className='h-[200px] flex justify-center items-center'>
                             <div className='w-[100px] h-[100px] '>
                                 <img alt='Profile' src='/assets/profile.png'></img>
-                                <p className='flex justify-center text-blue-950'>Anudeep Gude</p>
+                                <p className='flex justify-center text-blue-950'>T.N.P.</p>
                             </div>
                         </div>
 
@@ -263,7 +272,7 @@ const TnpDashboard = () => {
                             </div>
                         </div> */}
                     </MenuItem>
-                    <MenuItem icon = {<CgProfile />}  onClick={() => handleMenuItemClick('profile')} isActive={selectedMenuItem === 'profile'}>Profile</MenuItem>
+                    {/*<MenuItem icon = {<CgProfile />}  onClick={() => handleMenuItemClick('profile')} isActive={selectedMenuItem === 'profile'}>Profile</MenuItem>*/}
                               
           {path.indexOf('principal') === -1 ?
             <div>
