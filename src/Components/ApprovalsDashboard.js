@@ -23,6 +23,7 @@ const ApprovalData = () => {
     const fetchData = async () => {
         try {
             const colResponse = await axios.post('http://localhost:8000/getcolnames', { id: id });
+            console.log(colResponse);
             const newColumns = colResponse.data.columns.map(col => ({
                 label: col.colname,
                 field: col.name,
@@ -75,9 +76,9 @@ const ApprovalData = () => {
     };
 
     return (
-        <div className='min-h-screen bg-slate-100'>
+        <div className='min-h-screen w-full bg-slate-100'>
             <NavbarComp />
-            <div className='h-full flex flex-col justify-center items-center '>
+            <div className='h-full w-full flex flex-col justify-center items-center '>
                 <div className='md:w-[80%] w-[95%] p-10'>
                     <p className='font-semibold text-3xl text-center'>{formname}</p>
                 </div>

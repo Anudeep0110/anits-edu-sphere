@@ -11,7 +11,7 @@ const FormForApproval = () => {
     const navigate = useNavigate();
     const {role,dept} = useParams()
     const location = useLocation(); // Use useLocation hook
-    const path = location.pathname;
+    const path = location.pathname.split('/');
     const [tabledata, setTabledata] = useState({
         columns: [
             {
@@ -37,7 +37,7 @@ const FormForApproval = () => {
         const fetchFormNames = async () => {
             try {
                 let response;
-                if (path.includes('principal')) {
+                if (path.indexOf('principal') === -1) {
                     response = await axios.post('http://localhost:8000/getformnames', { role: role.toLowerCase() });
                 } else {
                     response = await axios.post('http://localhost:8000/getformnamesappr', { role: role.toLowerCase() });

@@ -14,6 +14,7 @@ const FormComp = () => {
     const [formdata,setFormdata] = React.useState({})
     const [status,setStatus] = React.useState(false)
     const [loading,setLoading] = React.useState(true);
+    const [iscustom,setIsCustom] = React.useState(0)
 
     const navigate = useNavigate();
 
@@ -24,14 +25,18 @@ const FormComp = () => {
     React.useEffect(() => {
         axios.post('http://localhost:8000/getform',{id:location.state.id})
         .then(res => {
+            console.log(res.data);
             setForm(res.data) 
+            setIsCustom(res.data?.iscustom)
             setTimeout(() => {
                 setLoading(false)
         },2000)
         })
     },[location.state.id])
 
+
     const submitted = async (e) => {
+        console.log("CALLING");
         e.preventDefault();
         let additionalFields = {};
         if (atob(localStorage.getItem('role')) === 'student' ) {
@@ -40,7 +45,6 @@ const FormComp = () => {
                 additionalFields = response.data;
             } catch (error) {
                 console.error('Error fetching additional fields:', error);
-                return;
             }
         }
         else if (atob(localStorage.getItem('role')) === 'faculty' ) {
@@ -50,7 +54,6 @@ const FormComp = () => {
                 console.log(additionalFields)
             } catch (error) {
                 console.error('Error fetching additional fields:', error);
-                return;
             }
         }
         const formDataWithAdditionalFields = {
@@ -64,10 +67,14 @@ const FormComp = () => {
         const formDataWithId = {
             formid: location.state.id,
             data: formDataWithAdditionalFields,
+            iscustom:iscustom
         };
 
-        if(localStorage.getItem('role') === 'student' || localStorage.getItem('role') === 'faculty'){
-    
+        console.log(formDataWithId);
+
+        try{
+        if(atob(localStorage.getItem('role')) === 'student' || atob(localStorage.getItem('role')) === 'faculty'){
+        console.log("SENDING TO APPROVALS");
         await axios.post('http://localhost:8000/sendtoapprovals', formDataWithId)
         .then(res => {
             console.log("reponse",res.data);
@@ -106,6 +113,7 @@ const FormComp = () => {
             },3000)
         });
     }else{
+        console.log("DIRECTLY SENDING");
         await axios.post('http://localhost:8000/sendtodb', formDataWithId)
         .then(res => {
             console.log("reponse",res.data);
@@ -141,6 +149,9 @@ const FormComp = () => {
                 navigate(atob(localStorage.getItem('loginURL')))
             },3000)
         });
+    }
+    }catch(error){
+        console.log(error);
     }
     }
     

@@ -20,6 +20,7 @@ const FormData = () => {
     const [loading, setLoading] = React.useState(true);
     const [editId,setEditId] = React.useState('');
     const [payload,setPayload] = React.useState({});
+    const [iscustom,setIsCustom] = React.useState(0)
 
     const edit = (key) => {
         let payload = {}
@@ -40,11 +41,16 @@ const FormData = () => {
 
     React.useEffect(() => {
         const fetchData = async () => {
+            let cus = 0;
             try {
                 const colResponse = await axios.post('http://localhost:8000/getcolnames', { id: id });
                 setTimeout(() => {
                     setLoading(false)
             },2000)
+            cus = colResponse.data?.iscustom
+            console.log(colResponse.data?.iscustom);
+            console.log(cus);
+            await setIsCustom(prev => colResponse.data?.iscustom)
                 const newColumns = colResponse.data.columns.map(col => ({
                     label: col.colname,
                     field: col.name,
@@ -60,15 +66,13 @@ const FormData = () => {
                 })
             }
 
-
-
-            
                 const studentId = location.state.studentId;
                 const employee_id = location.state.employee_id;
                 const dept = location.state.dept;
                 setColumns(newColumns);
             
-                const rowResponse = await axios.post('http://localhost:8000/getformdata', { id: id, studentId: studentId, employee_id: employee_id,dept:dept });
+                const rowResponse = await axios.post('http://localhost:8000/getformdata', { id: id, studentId: studentId, employee_id: employee_id,dept:dept,iscustom:cus});
+                console.log(rowResponse);
                 const newData = rowResponse.data.map(approval => {
                     // If studentId or employee_id is present, include the approval status in the row data
                     const rowData = {
@@ -168,7 +172,6 @@ const Modal = ({open,handleOpen,formId,payload,id,cols,data}) => {
     const update = () => {
         axios.post('http://localhost:8000/updateformdata',{id:formId,docId:id,data:dataTo})
         .then(res => {
-            console.log("response",res.data);
             handleOpen();
             toast.success('Data Saved successfully!', {
                 position: "top-right",

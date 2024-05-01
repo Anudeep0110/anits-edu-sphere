@@ -76,9 +76,9 @@ const CreateForm = () => {
 
 
   return (
-    <div className=' bg-slate-100 min-h-screen'>
+    <div className=' bg-slate-100 w-full min-h-screen'>
         <NavbarComp />
-        <div className='flex flex-col px-20 py-10'>
+        <div className='flex w-full flex-col px-20 py-10'>
             <div className='flex flex-col items-center uppercase px-20'>
                 <h1 className='text-4xl font-semibold'>Craft your Forms Here.</h1>
                 <p className='text-red-600 font-semibold'>Note : It is a requirement in our forms that every field be mandatory..</p>

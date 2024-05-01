@@ -77,7 +77,7 @@ const CreateForm = () => {
   return (
     <div className=' bg-slate-100 min-h-screen'>
         <NavbarComp />
-        <div className='flex flex-col px-20 py-20'>
+        <div className='flex w-full flex-col px-20 py-20'>
             <div className='flex justify-between px-12 py-16'>
                 <h1 className='text-4xl font-semibold'>Craft your Forms Here.</h1>
                 <button onClick={() => navigate('/createform',{state:{role:"admin"}})} className='px-10 py-1 rounded rouned-sm text-lg font-semibold bg-black text-white'>Create</button>
@@ -94,7 +94,7 @@ export default CreateForm
 
 const Table = ({data}) => {
     return (
-        <div className='md:p-12 p-3 gap-x-20 gap-y-10 flex flex-wrap justify-center'>
+        <div className='md:p-12 p-3 gap-x-20 gap-y-10  flex flex-wrap justify-center'>
             <div className='md:w-[97%] font-semibold'>
                 <MDBDataTable
                     hover
