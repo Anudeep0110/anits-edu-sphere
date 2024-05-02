@@ -30,7 +30,6 @@ import ImportFaculty from './Components/ImportFaculty';
 import CreateForm from './Components/CreateForm';
 import FormBuilder from './Components/FormBuilder';
 import AdminViewForm from './Components/AdminViewForm';
-import Loader from './Components/Loader';
 
 
 
@@ -44,12 +43,12 @@ function App() {
     <BrowserRouter>
         <Routes>
           <Route path='/' element={<HomeComp />}></Route>
-          <Route path='/dashboard' element={<Loader />}></Route>
+          {/* <Route path='/dashboard' element={<Loader />}></Route> */}
           <Route path='/sforgot' element={<Sforgot />}></Route>
           <Route path='/sreset/:encryptedText' element={<Sreset />}></Route> 
           <Route path='/login' element={<Login />}></Route> 
           <Route path='/form' element={<FormComp />}></Route> 
-          <Route path='/fpublications' element={<Formbook />}></Route>
+          {/* <Route path='/fpublications' element={<Formbook />}></Route> */}
           <Route path='/principal' element={<Principal />}></Route>
           <Route path='/principal/departments' element={<PrinDepartment />}></Route>
           <Route path='/principal/departments/:dept' element={<PrinDeptDashboard />}></Route>
@@ -66,7 +65,7 @@ function App() {
           <Route path='/iic' element={<IICDashBoard />}></Route>
           <Route path='/iqac' element={<IQACDashBoard />}></Route>
           <Route path='/department/:dept' element={<PrinDeptDashboard />}></Route>
-          <Route path='/search' element={<GlobalSearch />}></Route>
+          {/* <Route path='/search' element={<GlobalSearch />}></Route> */}
           <Route path='/:dept/approvals/:id' element={<ApprovalData />}></Route>
           <Route path='/:dept/dataauthentication' element={<DeptAppr />}></Route>
           <Route path='/:dept/formforapproval/:role' element={<FormForApproval />}></Route>

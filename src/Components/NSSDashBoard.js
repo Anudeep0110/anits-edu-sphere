@@ -44,46 +44,7 @@ const NSSDashBoard = () => {
     console.log(location.pathname.split('/').indexOf('principal'));
     console.log(atob(localStorage.getItem('role')));
 
-    React.useEffect(() => {
-        if (atob(localStorage.getItem('role')) !== 'nss' && location.pathname.split('/').indexOf('principal') === -1) {
-            navigate('/');
-        } else {
-            setLoading(false);
-        }
-    }, [location.state, location.pathname, navigate]);
-
-    const [selectedMenuItem, setSelectedMenuItem] = React.useState('forms');
-
-    const [tabledata, setTabledata] = React.useState({
-        columns: [
-          {
-            label: 'Icon',
-            field: 'icon',
-            sort: 'asc',
-            width: 50
-          },
-          {
-            label: 'Form Name',
-            field: 'fname',
-            sort: 'asc',
-            width: 400
-          },
-          {
-            label: 'Action',
-            field: 'action',
-            sort: 'asc',
-            width: 250,
-            searchable: true
-          },
-        ],
-        rows: []
-    });
-
-    if (loading) {
-        return <Loader />;
-    }
-    
-      const getforms = async () => {
+    const getforms = async () => {
         axios.post('http://localhost:8000/getformnames',{role:'NSS'})
         .then(response => {
         const forms = response.data;
@@ -120,6 +81,48 @@ const NSSDashBoard = () => {
         console.log(tabledata);
       })
     }
+
+    React.useEffect(() => {
+        if (atob(localStorage.getItem('role')) !== 'nss' && location.pathname.split('/').indexOf('principal') === -1) {
+            navigate('/');
+        } else {
+            getforms();
+            setLoading(false);
+        }
+    }, [location.state, location.pathname, navigate]);
+
+    const [selectedMenuItem, setSelectedMenuItem] = React.useState('forms');
+
+    const [tabledata, setTabledata] = React.useState({
+        columns: [
+          {
+            label: 'Icon',
+            field: 'icon',
+            sort: 'asc',
+            width: 50
+          },
+          {
+            label: 'Form Name',
+            field: 'fname',
+            sort: 'asc',
+            width: 400
+          },
+          {
+            label: 'Action',
+            field: 'action',
+            sort: 'asc',
+            width: 250,
+            searchable: true
+          },
+        ],
+        rows: []
+    });
+
+    if (loading) {
+        return <Loader />;
+    }
+    
+      
 
   const handleMenuItemClick = (item) => {
     setSelectedMenuItem(item);

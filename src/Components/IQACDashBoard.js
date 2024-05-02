@@ -133,41 +133,7 @@ const IQACDashBoard = () => {
     
     const navigate = useNavigate()
 
-    React.useEffect(() => {
-        if(atob(localStorage.getItem('role')) !== 'iqac' && location.pathname.split('/').indexOf('principal') === -1) navigate('/')
-        else setLoading(false)
-    },[])
-    
-
-    const [selectedMenuItem, setSelectedMenuItem] = React.useState('forms');
-
-    const [tabledata, setTabledata] = React.useState({
-        columns: [
-          {
-            label: 'Icon',
-            field: 'icon',
-            sort: 'asc',
-            width: 50
-          },
-          {
-            label: 'Form Name',
-            field: 'fname',
-            sort: 'asc',
-            width: 400
-          },
-          {
-            label: 'Action',
-            field: 'action',
-            sort: 'asc',
-            width: 250,
-            searchable: true
-          },
-        ],
-        rows: []
-    });
-
-    if(loading) return <Loader />
-      const getforms = async () => {
+    const getforms = async () => {
         axios.post('http://localhost:8000/getformnames',{role:'iqac'})
         .then(response => {
         const forms = response.data;
@@ -207,6 +173,45 @@ const IQACDashBoard = () => {
       })
     }
 
+
+    React.useEffect(() => {
+        if(atob(localStorage.getItem('role')) !== 'iqac' && location.pathname.split('/').indexOf('principal') === -1) navigate('/')
+        else {
+            getforms();
+            setLoading(false)
+        }
+    },[])
+    
+
+    const [selectedMenuItem, setSelectedMenuItem] = React.useState('forms');
+
+    const [tabledata, setTabledata] = React.useState({
+        columns: [
+          {
+            label: 'Icon',
+            field: 'icon',
+            sort: 'asc',
+            width: 50
+          },
+          {
+            label: 'Form Name',
+            field: 'fname',
+            sort: 'asc',
+            width: 400
+          },
+          {
+            label: 'Action',
+            field: 'action',
+            sort: 'asc',
+            width: 250,
+            searchable: true
+          },
+        ],
+        rows: []
+    });
+
+    if(loading) return <Loader />
+      
   const handleMenuItemClick = (item) => {
     setSelectedMenuItem(item);
   };

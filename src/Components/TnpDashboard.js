@@ -132,9 +132,47 @@ const TnpDashboard = () => {
     
     const navigate = useNavigate()
 
+    const getforms = async () => {
+        axios.post('http://localhost:8000/getformnames',{role:'tnp'})
+        .then(response => {
+        const forms = response.data;
+        let rows = [];
+        forms.forEach(form => {
+            rows.push({
+            icon: <GrTableAdd className='text-center scale-150 w-full'/>,
+            fname: form.formname,
+            action: <button onClick={() => navigate('/form', { state: { id: form._id, formname:form.formname } })} className='bg-blue-500 text-white font-semibold rounded-md p-1'>Fill Form</button>
+            
+            })
+        })
+        setTabledata({...tabledata, rows: rows}); 
+        console.log(tabledata);
+      })
+    }
+
+
+    const viewforms = async () => {
+        axios.post('http://localhost:8000/getformnames',{role:'tnp'})
+        .then(response => {
+        const forms = response.data;
+        let rows = [];
+        forms.forEach(form => {
+            rows.push({
+            icon: <GrTableAdd className='text-center scale-150 w-full'/>,
+            fname: form.formname,
+            action: <button onClick={() => navigate(`/formdata/${form._id}`,{state:{formname:form.formname}})} className='bg-blue-500 text-white font-semibold rounded-md p-1'>View Data</button>
+            
+            })
+        })
+        setTabledata({...tabledata, rows: rows}); 
+        console.log(tabledata);
+      })
+    }
+
     React.useEffect(() => {
         if(atob(localStorage.getItem('role')) !== 'tnp' && location.pathname.split('/').indexOf('principal') === -1) navigate('/')
         else{
+            getforms()
             setTimeout(() => {
                 setLoading(false)
         },2000)
@@ -173,42 +211,7 @@ const TnpDashboard = () => {
 
     if(loading) return <Loader />
 
-      const getforms = async () => {
-        axios.post('http://localhost:8000/getformnames',{role:'tnp'})
-        .then(response => {
-        const forms = response.data;
-        let rows = [];
-        forms.forEach(form => {
-            rows.push({
-            icon: <GrTableAdd className='text-center scale-150 w-full'/>,
-            fname: form.formname,
-            action: <button onClick={() => navigate('/form', { state: { id: form._id, formname:form.formname } })} className='bg-blue-500 text-white font-semibold rounded-md p-1'>Fill Form</button>
-            
-            })
-        })
-        setTabledata({...tabledata, rows: rows}); 
-        console.log(tabledata);
-      })
-    }
-
-
-    const viewforms = async () => {
-        axios.post('http://localhost:8000/getformnames',{role:'tnp'})
-        .then(response => {
-        const forms = response.data;
-        let rows = [];
-        forms.forEach(form => {
-            rows.push({
-            icon: <GrTableAdd className='text-center scale-150 w-full'/>,
-            fname: form.formname,
-            action: <button onClick={() => navigate(`/formdata/${form._id}`,{state:{formname:form.formname}})} className='bg-blue-500 text-white font-semibold rounded-md p-1'>View Data</button>
-            
-            })
-        })
-        setTabledata({...tabledata, rows: rows}); 
-        console.log(tabledata);
-      })
-    }
+      
 
   const handleMenuItemClick = (item) => {
     setSelectedMenuItem(item);
